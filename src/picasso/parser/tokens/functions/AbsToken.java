@@ -8,9 +8,9 @@ package picasso.parser.tokens.functions;
  * @author Elijah "Uno" Christopher
  *
  */
-public class AbsoluteToken extends FunctionToken {
+public class AbsToken extends FunctionToken {
 	
-	public AbsoluteToken() {
+	public AbsToken() {
 		super("Absolute Function Token");
 	}
 

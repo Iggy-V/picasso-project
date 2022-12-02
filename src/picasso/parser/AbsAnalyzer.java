@@ -14,7 +14,7 @@ import picasso.parser.tokens.Token;
  * @author Elijah "Uno" Christopher
  *
  */
-public class AbsoluteAnalyzer extends UnaryFunctionAnalyzer {
+public class AbsAnalyzer extends UnaryFunctionAnalyzer {
 	
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {

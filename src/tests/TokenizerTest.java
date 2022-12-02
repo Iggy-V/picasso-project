@@ -1,6 +1,7 @@
 package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import picasso.parser.Tokenizer;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
+import picasso.parser.tokens.operations.*; // needed to import this for binary operators
 
 public class TokenizerTest {
 
@@ -86,6 +88,15 @@ public class TokenizerTest {
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
+	}
+	
+	@Test
+	public void testTokenizePlusOperatorExpression() {
+		String expression = "x+y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new PlusToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 	}
 
 	@Test
