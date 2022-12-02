@@ -120,7 +120,7 @@ public class EvaluatorTests {
 					myTree.evaluate(testVal, testVal));
 		}
 	}
-	
+	@Test
 	public void testAdditionEvaluation() {
 		Addition myTree = new Addition(new X(), new Y());
 
