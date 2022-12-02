@@ -122,7 +122,7 @@ public class EvaluatorTests {
 	}
 	@Test
 	public void testSinEvaluation() {
-		Absolute myTree = new Absolute(new X());
+		Sin myTree = new Sin(new X());
 
 		// some straightforward tests
 		assertEquals(new RGBColor(Math.sin(0.6), Math.sin(0.6), Math.sin(0.6)), myTree.evaluate(.6, -1));
@@ -146,7 +146,7 @@ public class EvaluatorTests {
 	}
 	@Test
 	public void testCeilEvaluation() {
-		Absolute myTree = new Ceil(new X());
+		Ceil myTree = new Ceil(new X());
 
 		// some straightforward tests
 		assertEquals(new RGBColor(Math.ceil(0.6), Math.ceil(0.6), Math.ceil(0.6)), myTree.evaluate(.6, -1));
