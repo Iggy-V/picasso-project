@@ -23,7 +23,7 @@ public class Addition extends BinaryOperator{
 	}
 	/**
 	 * Evaluates this expression at the given x,y point by evaluating the addition of
-	 * the function's parameter.
+	 * the function's parameter. aksdf
 	 */
 	
 	@Override
