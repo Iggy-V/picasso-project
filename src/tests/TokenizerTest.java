@@ -14,7 +14,7 @@ import picasso.parser.Tokenizer;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
-import picasso.parser.tokens.operations.*; // needed to import this for binary operators
+import picasso.parser.tokens.operations.*; // needed to import this for binary operators.
 
 public class TokenizerTest {
 

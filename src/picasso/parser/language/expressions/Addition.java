@@ -8,6 +8,7 @@ import picasso.parser.language.ExpressionTreeNode;
 /**
  * Represents the Plus operator in the Picasso language
  * @author Elijah "Uno" Christopher
+ * @author Ignas Volcokas
  *
  */
 public class Addition extends BinaryOperator{ 
@@ -23,7 +24,7 @@ public class Addition extends BinaryOperator{
 	}
 	/**
 	 * Evaluates this expression at the given x,y point by evaluating the addition of
-	 * the function's parameter. 
+	 * the function's parameter..
 	 */
 	
 	@Override
