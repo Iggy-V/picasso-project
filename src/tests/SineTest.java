@@ -3,6 +3,8 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.beans.Transient;
+
 import org.junit.jupiter.api.Test;
 
 import picasso.parser.tokens.functions.SinToken;
@@ -24,6 +26,4 @@ public class SineTest {
 		SinToken token = new SinToken();
 		assertTrue(token.isConstant()== false);
 	}
-	
-	
 }
