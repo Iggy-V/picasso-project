@@ -72,4 +72,31 @@ public class ParseExpressionTreeTests {
 		assertEquals(new Floor(new Addition(new X(), new Y())), e);
 	}
 
+	@Test
+	public void sinFunctionTests(){
+		ExpressionTreeNode e = parser.makeExpression("sin( x )");
+		assertEquals(new Sin(new X()), e);
+
+		e = parser.makeExpression("sin( x + y )");
+		assertEquals(new Sin(new Addition(new X(), new Y())), e);
+	}
+
+	@Test
+	public void absFunctionTests(){
+		ExpressionTreeNode e = parser.makeExpression("abs( x )");
+		assertEquals(new Absolute(new X()), e);
+
+		e = parser.makeExpression("abs( x + y )");
+		assertEquals(new Absolute(new Addition(new X(), new Y())), e);
+	}
+
+	@Test
+	public void ceilFunctionTests(){
+		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
+		assertEquals(new Ceil(new X()), e);
+
+		e = parser.makeExpression("ceil( x + y )");
+		assertEquals(new Ceil(new Addition(new X(), new Y())), e);
+	}
+
 }
