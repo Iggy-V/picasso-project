@@ -49,6 +49,7 @@ public class AbsValueTest {
 			assertEquals(new RGBColor(absOfTestVal, absOfTestVal, absOfTestVal), myTree.evaluate(testVal, -1));
 			assertEquals(new RGBColor(absOfTestVal, absOfTestVal, absOfTestVal),
 					myTree.evaluate(testVal, testVal));
+			
 		}
 	}
 	
