@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.*;
+import picasso.parser.tokens.operations.*;
 
 /**
  * Tests of creating an expression tree from a string expression. Will have
@@ -44,14 +46,14 @@ public class ParseExpressionTreeTests {
 		assertEquals(new Addition(new X(), new Y()), e);
 		
 		// no spaces!
-		ExpressionTreeNode e = parser.makeExpression("x+y");
-		assertEquals(new Addition(new X(), new Y()), e);
+		ExpressionTreeNode e1 = parser.makeExpression("x+y");
+		assertEquals(new Addition(new X(), new Y()), e1);
 
-		e = parser.makeExpression("[1,.3,-1] + y");
-		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e);
+		e1 = parser.makeExpression("[1,.3,-1] + y");
+		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e1);
 		
-		e = parser.makeExpression("x + y + [ -.51, 0, 1]");
-		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+		e1 = parser.makeExpression("x + y + [ -.51, 0, 1]");
+		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
 	}
 
 	@Test
@@ -76,9 +78,35 @@ public class ParseExpressionTreeTests {
 	public void cosFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("cos( x )");
 		assertEquals(new Cosine(new X()), e);
-
 		//e = parser.makeExpression("floor( x + y )");
 		//assertEquals(new Cosine(new Addition(new X(), new Y())), e);
+	}
+
+	@Test
+	public void sinFunctionTests(){
+		ExpressionTreeNode e = parser.makeExpression("sin( x )");
+		assertEquals(new Sin(new X()), e);
+
+		e = parser.makeExpression("sin( x + y )");
+		assertEquals(new Sin(new Addition(new X(), new Y())), e);
+	}
+
+	@Test
+	public void absFunctionTests(){
+		ExpressionTreeNode e = parser.makeExpression("abs( x )");
+		assertEquals(new Absolute(new X()), e);
+
+		e = parser.makeExpression("abs( x + y )");
+		assertEquals(new Absolute(new Addition(new X(), new Y())), e);
+	}
+
+	@Test
+	public void ceilFunctionTests(){
+		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
+		assertEquals(new Ceil(new X()), e);
+
+		e = parser.makeExpression("ceil( x + y )");
+		assertEquals(new Ceil(new Addition(new X(), new Y())), e);
 	}
 
 }
