@@ -1,4 +1,5 @@
 # Picasso
+## By Jack Joe Uno and Ignas
 
 An application that allows the user to create expressions that
 evaluate to colors and then eventually to images.
