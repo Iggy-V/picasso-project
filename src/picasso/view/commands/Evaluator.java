@@ -3,11 +3,12 @@ package picasso.view.commands;
 import java.awt.Color;
 import java.awt.Dimension;
 
+
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
-
+import picasso.view.Frame;
 /**
  * Evaluate an expression for each pixel in a image.
  * 
@@ -17,7 +18,7 @@ import picasso.util.Command;
 public class Evaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
-
+	private String test = Frame.textFieldValue;
 	/**
 	 * Evaluate an expression for each point in the image.
 	 */
@@ -53,8 +54,6 @@ public class Evaluator implements Command<Pixmap> {
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
 
-		//String test = "floor(y)";
-		String test = "x + y";
 
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		return expTreeGen.makeExpression(test);
