@@ -5,10 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import picasso.parser.language.expressions.Cosine;
+import picasso.parser.language.expressions.Absolute;
 import picasso.parser.language.expressions.RGBColor;
 import picasso.parser.language.expressions.X;
-import picasso.parser.tokens.functions.CosToken;
+import picasso.parser.tokens.functions.AbsToken;
+
 
 public class AbsValueTest {
 	
