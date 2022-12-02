@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.*;
+import picasso.parser.tokens.operations.*;
 
 /**
  * Tests of creating an expression tree from a string expression. Will have
@@ -44,14 +46,14 @@ public class ParseExpressionTreeTests {
 		assertEquals(new Addition(new X(), new Y()), e);
 		
 		// no spaces!
-		ExpressionTreeNode e = parser.makeExpression("x+y");
-		assertEquals(new Addition(new X(), new Y()), e);
+		ExpressionTreeNode e1 = parser.makeExpression("x+y");
+		assertEquals(new Addition(new X(), new Y()), e1);
 
-		e = parser.makeExpression("[1,.3,-1] + y");
-		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e);
+		e1 = parser.makeExpression("[1,.3,-1] + y");
+		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e1);
 		
-		e = parser.makeExpression("x + y + [ -.51, 0, 1]");
-		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+		e1 = parser.makeExpression("x + y + [ -.51, 0, 1]");
+		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
 	}
 
 	@Test
