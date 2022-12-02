@@ -68,6 +68,7 @@ public class EvaluatorTests {
 		}
 	}
 
+
 	@Test
 	public void testCosEvaluation() {
 		Cosine myTree = new Cosine(new X());
@@ -78,7 +79,8 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(Math.cos(-1), Math.cos(-1), Math.cos(-1)), myTree.evaluate(-1, -1));
 
 		// test the ints; remember that y's value doesn't matter
-		for (int i = -1; i <= 1; i++) {
+		for(int i=-1;i<=1;i++){
+
 			assertEquals(new RGBColor(Math.cos(i), Math.cos(i), Math.cos(i)), myTree.evaluate(i, -i));
 			assertEquals(new RGBColor(Math.cos(i), Math.cos(i), Math.cos(i)), myTree.evaluate(i, i));
 		}
