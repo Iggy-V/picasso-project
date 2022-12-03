@@ -16,7 +16,7 @@ public class AbsValueTest {
 	@Test
 	public void testAbsTokenDescription() {
 		AbsToken token = new AbsToken();
-		assertEquals(token.toString(),"Cosine Function Token");
+		assertEquals(token.toString(),"Absolute Function Token");
 	}
 	@Test
 	public void testAbsTokenFunction() {
