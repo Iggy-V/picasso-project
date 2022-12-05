@@ -1,8 +1,11 @@
 package tests;
 
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 import picasso.parser.language.expressions.Ceil;
+import picasso.parser.tokens.functions.CeilToken;
+import picasso.parser.language.expressions.RGBColor;
+import picasso.parser.language.expressions.X;
 
 public class CeilTest {
 	
