@@ -14,7 +14,7 @@ import picasso.parser.language.expressions.*;
  * @author Sara Sprenkle
  * @author Elijah "Uno" Christopher
  */
-public class PlusAnalyzer implements SemanticAnalyzerInterface {
+public class AdditionAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
