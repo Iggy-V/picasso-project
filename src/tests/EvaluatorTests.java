@@ -122,7 +122,7 @@ public class EvaluatorTests {
 	}
 	@Test
 	public void testSinEvaluation() {
-		Absolute myTree = new Absolute(new X());
+		Sin myTree = new Sin(new X());
 
 		// some straightforward tests
 		assertEquals(new RGBColor(Math.sin(0.6), Math.sin(0.6), Math.sin(0.6)), myTree.evaluate(.6, -1));
@@ -146,7 +146,7 @@ public class EvaluatorTests {
 	}
 	@Test
 	public void testCeilEvaluation() {
-		Absolute myTree = new Ceil(new X());
+		Ceil myTree = new Ceil(new X());
 
 		// some straightforward tests
 		assertEquals(new RGBColor(Math.ceil(0.6), Math.ceil(0.6), Math.ceil(0.6)), myTree.evaluate(.6, -1));
@@ -167,5 +167,22 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(ceilOfTestVal, ceilOfTestVal, ceilOfTestVal),
 					myTree.evaluate(testVal, testVal));
 		}
+	}
+	
+	@Test
+	public void testAdditionEvaluation() {
+		Addition myTree = new Addition(new X(), new Y());
+
+		// some straightforward tests
+		assertEquals(new RGBColor(0.6 + (-1), 0.6 + (-1), 0.6 + (-1)), myTree.evaluate(.6, -1));
+		assertEquals(new RGBColor(0 + (-1), 0 + (-1), 0 + (-1)), myTree.evaluate(0, -1));
+		assertEquals(new RGBColor((-0.3 + 1), (-0.3 + 1), (-0.3 + 1)), myTree.evaluate(-0.3, 1));
+		
+		// test the ints
+		for(int i=-1;i<=1;i++){
+			assertEquals(new RGBColor(i+(-i), i+(-i), i+(-i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(i+i, i+i, i+i), myTree.evaluate(i, i));
+		}
+
 	}
 }

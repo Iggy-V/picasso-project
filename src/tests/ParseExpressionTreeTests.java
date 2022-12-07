@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.*;
-import picasso.parser.tokens.operations.*;
+import picasso.parser.language.expressions.Addition;
 
 /**
  * Tests of creating an expression tree from a string expression. Will have
@@ -96,7 +96,7 @@ public class ParseExpressionTreeTests {
 		ExpressionTreeNode e = parser.makeExpression("abs( x )");
 		assertEquals(new Absolute(new X()), e);
 
-		e = parser.makeExpression("abs( x + y )");
+		e = parser.makeExpression("abs(x+y)");
 		assertEquals(new Absolute(new Addition(new X(), new Y())), e);
 	}
 
