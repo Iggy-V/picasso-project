@@ -40,7 +40,7 @@ public class Frame extends JFrame {
 		canvas.setSize(size);
 
 		
-		entry = new JTextField(10);
+		entry = new JTextField(25);
 		jLabel1 = new JLabel();
 		evaluate = new JButton("Submit");
 		
@@ -65,7 +65,6 @@ public class Frame extends JFrame {
 				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
 				action.execute(canvas.getPixmap());
 				canvas.refresh();
-				entry.setText("");
 			}
 		});
 		// add our container to Frame and show it
