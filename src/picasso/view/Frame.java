@@ -66,8 +66,11 @@ public class Frame extends JFrame {
 				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
 				action.execute(canvas.getPixmap());
 				canvas.refresh();
+				// TODO:
+				// Input.setInput("y+x"); why is this the one getting evluated
 			}
 		});
+		//Input.setInput("");
 		// add our container to Frame and show it
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);

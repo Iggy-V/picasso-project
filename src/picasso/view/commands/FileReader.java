@@ -11,6 +11,7 @@ import picasso.util.FileCommand;
 import picasso.util.ThreadedCommand;
 import picasso.view.Input;
 import picasso.view.Canvas;
+import static javax.swing.JOptionPane.showMessageDialog;
 /**
  * this class reads from a file and uses the last expresion
  * in the file to display it
@@ -39,6 +40,12 @@ public class FileReader extends FileCommand<Pixmap> {
         if (filename != null){
             try {
                 Scanner input = new Scanner(new File(filename));
+                if (!input.hasNextLine()){
+                    // TODO 
+                    // duplicate 
+                    showMessageDialog(null, "Empty file");
+                    return;
+                }
                 while (input.hasNextLine())
                 {
                     String expression = input.nextLine();
@@ -51,7 +58,7 @@ public class FileReader extends FileCommand<Pixmap> {
                 action.execute(canvas.getPixmap());
                 canvas.refresh();
              }
-             catch (FileNotFoundException e){ System.out.println(e.getStackTrace());}
+             catch (FileNotFoundException e){showMessageDialog(null, "Please select a valid file (.txt)");}
              finally {;}
             }
         }

@@ -8,6 +8,8 @@ import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 
 import picasso.view.Input;
 /**
@@ -24,18 +26,23 @@ public class Evaluator implements Command<Pixmap> {
 	 * Evaluate an expression for each point in the image.
 	 */
 	public void execute(Pixmap target) {
-		// create the expression to evaluate just once
-		ExpressionTreeNode expr = createExpression();
-		// evaluate it for each pixel
-		Dimension size = target.getSize();
-		for (int imageY = 0; imageY < size.height; imageY++) {
-			double evalY = imageToDomainScale(imageY, size.height);
-			for (int imageX = 0; imageX < size.width; imageX++) {
-				double evalX = imageToDomainScale(imageX, size.width);
-				Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
-				target.setColor(imageX, imageY, pixelColor);
+		try{
+			// create the expression to evaluate just once
+			ExpressionTreeNode expr = createExpression();
+			// evaluate it for each pixel
+			Dimension size = target.getSize();
+			for (int imageY = 0; imageY < size.height; imageY++) {
+				double evalY = imageToDomainScale(imageY, size.height);
+				for (int imageX = 0; imageX < size.width; imageX++) {
+					double evalX = imageToDomainScale(imageX, size.width);
+					Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
+					target.setColor(imageX, imageY, pixelColor);
+					
+					
+				}
 			}
 		}
+		catch (NullPointerException e){showMessageDialog(null, "Invalid input - please adjust input");}
 	}
 
 	/**
