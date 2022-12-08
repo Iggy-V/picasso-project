@@ -44,7 +44,7 @@ public class Evaluator implements Command<Pixmap> {
 		double range = DOMAIN_MAX - DOMAIN_MIN;
 		return ((double) value / bounds) * range + DOMAIN_MIN;
 	}
-
+	
 	/**
 	 * 
 	 * A place holder for a more interesting way to build the expression.

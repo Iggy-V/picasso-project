@@ -3,37 +3,46 @@
  */
 package picasso.parser.language.expressions;
 
+import picasso.parser.IdentifierAnalyzer;
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.parser.tokens.IdentifierToken;
 
 /**
  * Represents the assignment operator in the Picasso language
  * @author Joe Condie
  * 
  */
-public class Equals extends BinaryOperator{ 
+public class Equals extends ExpressionTreeNode { 
+	
 	
 	/**
 	 * Creates an assignment expression that takes as a parameter the given two expressions
 	 * 
+	 * @param var
 	 * @param param
-	 * @param param2
 	 */
-	public Equals(ExpressionTreeNode param, ExpressionTreeNode param2) {
-		super(param, param2);
+	 String left; 
+	 ExpressionTreeNode right;
+	
+	public Equals(String left, ExpressionTreeNode right) {
+		this.left = left;
+		this.right = right;
+		IdentifierAnalyzer.idToExpression.put(this.left, this.right);
 	}
+	
 	/**
 	 * Evaluates this expression on both sides of the equals sign
 	 */
-	
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		RGBColor result = param.evaluate(x, y);
-		RGBColor result2 = param2.evaluate(x, y);
-		double red = result.getRed()+ result2.getRed();
-		double green = result.getGreen()+ result2.getGreen();
-		double blue = result.getBlue()+ result2.getBlue();
 		
-		return new RGBColor(red, green, blue);
+		RGBColor result = right.evaluate(x, y);
+		double red = result.getRed();
+		double green = result.getGreen();
+		double blue = result.getBlue();
+		
+		return new RGBColor(red,green,blue);
+		
 	}
-
+	
 }
