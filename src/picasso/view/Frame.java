@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import picasso.model.Pixmap;
 import picasso.util.ThreadedCommand;
 import picasso.view.commands.*;
-
 /**
  * Main container for the Picasso application
  *
@@ -29,6 +28,7 @@ public class Frame extends JFrame {
     private JLabel jLabel1;
     private JButton evaluate;
     public static String textFieldValue;
+	public Canvas canvas;
     
 	public Frame(Dimension size) {
 		
@@ -36,14 +36,13 @@ public class Frame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// create GUI components
-		Canvas canvas = new Canvas(this);
+		canvas = new Canvas(this);
 		canvas.setSize(size);
 
 		
 		entry = new JTextField(25);
 		jLabel1 = new JLabel();
 		evaluate = new JButton("Submit");
-		
 		jLabel1.setText("Enter the expression:");
 		
 		
@@ -52,15 +51,17 @@ public class Frame extends JFrame {
 		commands.add("Open", new Reader());
 		//commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		commands.add("Save", new Writer());
-		
+		commands.add("Read File", new FileReader(canvas));
 		commands.add(jLabel1);
 		commands.add(entry);
 		commands.add(evaluate);
+		
+
 		//commands.add("Submit", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		evaluate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldValue = entry.getText();
-				System.out.println(textFieldValue);
+				Input.setInput(entry.getText());
+				System.out.println(Input.getInput());
 				Evaluator ev = new Evaluator();
 				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
 				action.execute(canvas.getPixmap());

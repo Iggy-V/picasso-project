@@ -8,7 +8,8 @@ import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
-import picasso.view.Frame;
+
+import picasso.view.Input;
 /**
  * Evaluate an expression for each pixel in a image.
  * 
@@ -18,7 +19,7 @@ import picasso.view.Frame;
 public class Evaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
-	private String test = Frame.textFieldValue;
+	
 	/**
 	 * Evaluate an expression for each point in the image.
 	 */
@@ -56,7 +57,7 @@ public class Evaluator implements Command<Pixmap> {
 
 
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
-		return expTreeGen.makeExpression(test);
+		return expTreeGen.makeExpression(Input.getInput());
 
 		// return new Multiply( new X(), new Y() );
 	}
