@@ -42,7 +42,8 @@ public class Evaluator implements Command<Pixmap> {
 				}
 			}
 		}
-		catch (NullPointerException e){showMessageDialog(null, "Invalid input - please adjust input");}
+		catch (NullPointerException e){showMessageDialog(null, "Invalid input - please enter valid expression");}
+
 	}
 
 	/**
