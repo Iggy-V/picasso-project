@@ -185,4 +185,5 @@ public class EvaluatorTests {
 					myTree.evaluate(testVal, testVal));
 		}
 	}
-}
+
+	}

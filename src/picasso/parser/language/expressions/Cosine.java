@@ -5,7 +5,7 @@ import picasso.parser.language.ExpressionTreeNode;
 /**
  * Represents the Cosine function in the Picasso language.
  * 
- * @author Sara Sprenkle
+ * @author Joe Condie
  * 
  */
 public class Cosine extends UnaryFunction {
