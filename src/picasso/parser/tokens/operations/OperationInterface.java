@@ -7,6 +7,7 @@ package picasso.parser.tokens.operations;
 public interface OperationInterface {
 	
 	static final int CONSTANT = 0;
+	static final int EQUALS = 0;
 	static final int GROUPING = 1; // parentheses
 	static final int ADD_OR_SUBTRACT = 2;
 	static final int MULTIPLY_OR_DIVIDE = 3;
