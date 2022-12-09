@@ -4,18 +4,20 @@ import picasso.parser.language.CharConstants;
 import picasso.parser.tokens.chars.CharToken;
 
 /**
- * Represents the plus sign token
+ * Represents the minus sign token
  * 
  */
-public class PlusToken extends CharToken implements OperationInterface {
-	public PlusToken() {
-		super(CharConstants.PLUS);
+public class SubtractionToken extends CharToken implements OperationInterface {
+	public SubtractionToken() {
+		super(CharConstants.MINUS);
 		
 	}
 	
 	@Override
 	public final int OrderofOp() {
 		return ADD_OR_SUBTRACT;
+		
 	}
 	
+
 }

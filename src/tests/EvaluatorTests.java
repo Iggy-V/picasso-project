@@ -120,7 +120,7 @@ public class EvaluatorTests {
 					myTree.evaluate(testVal, testVal));
 		}
 	}
-	
+	@Test
 	public void testAdditionEvaluation() {
 		Addition myTree = new Addition(new X(), new Y());
 
@@ -131,7 +131,7 @@ public class EvaluatorTests {
 		
 		// test the ints
 		for(int i=-1;i<=1;i++){
-			assertEquals(new RGBColor(i+(-i), i+(-i), i+(-1)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(i+(-i), i+(-i), i+(-i)), myTree.evaluate(i, -i));
 			assertEquals(new RGBColor(i+i, i+i, i+i), myTree.evaluate(i, i));
 		}
 
@@ -186,4 +186,5 @@ public class EvaluatorTests {
 					myTree.evaluate(testVal, testVal));
 		}
 	}
-}
+
+	}

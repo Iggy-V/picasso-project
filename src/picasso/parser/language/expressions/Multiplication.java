@@ -1,43 +1,39 @@
-/**
- * 
- */
 package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
-
 /**
- * Represents the Plus operator in the Picasso language
+ * Represents the Multiplication operator in the Picasso language
  * @author Elijah "Uno" Christopher
- * @author Ignas Volcokas
  *
  */
-public class Addition extends BinaryOperator{ 
+public class Multiplication extends BinaryOperator {
 	
 	/**
-	 * Creates an addition expression that takes two parameters for an expression
+	 * Creates an Multiplication expression that takes two parameter for an expression
 	 * 
 	 * @param param
 	 * @param param2
 	 */
-	public Addition(ExpressionTreeNode param, ExpressionTreeNode param2) {
+	public Multiplication(ExpressionTreeNode param, ExpressionTreeNode param2) {
 		super(param, param2);
 	}
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the addition of
-	 * the function's parameter..
+	 * Evaluates this expression at the given x,y point by evaluating the multiplication of
+	 * the function's parameter.
+	 * 
+	 * Returns the color from evaluating Multiplication from the two parameters
 	 */
 	
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result = param.evaluate(x, y);
 		RGBColor result2 = param2.evaluate(x, y);
-		double red = result.getRed()+ result2.getRed();
-		double green = result.getGreen()+ result2.getGreen();
-		double blue = result.getBlue()+ result2.getBlue();
+		double red = result.getRed()* result2.getRed();
+		double green = result.getGreen()* result2.getGreen();
+		double blue = result.getBlue()* result2.getBlue();
 		
 		return new RGBColor(red, green, blue);
 	}
-	
 	/**
 	 * Returns the string representation of the function in the format "<ClassName>:
 	 * <parameter>"
@@ -56,7 +52,7 @@ public class Addition extends BinaryOperator{
 			return true;
 		}
 
-		if (!(o instanceof Addition)) {
+		if (!(o instanceof Subtraction)) {
 			return false;
 		}
 
@@ -66,13 +62,12 @@ public class Addition extends BinaryOperator{
 			return false;
 		}
 
-		Addition a = (Addition) o;
+		Multiplication m = (Multiplication) o;
 
 		// check if their parameters are equal
-		if (!this.param.equals(a.param)) {
+		if (!this.param.equals(m.param)) {
 			return false;
 		}
 		return true;
 	}
-
 }

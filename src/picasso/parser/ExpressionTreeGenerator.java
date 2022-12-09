@@ -19,11 +19,7 @@ import picasso.parser.tokens.operations.*;
  */
 public class ExpressionTreeGenerator {
 
-	// TODO: Do these belong here?
-	private static final int CONSTANT = 0;
-	private static final int GROUPING = 1; // parentheses
-	private static final int ADD_OR_SUBTRACT = 2;
-	private static final int MULTIPLY_OR_DIVIDE = 3;
+	// TODO: Do these belong here? No, they belong in OperationInterface
 
 	/**
 	 * Converts the given string into expression tree for easier manipulation.
@@ -181,18 +177,11 @@ public class ExpressionTreeGenerator {
 	/**
 	 * 
 	 * @param token
-	 * @return
+	 * @return precedence of token
 	 */
 	private int orderOfOperation(Token token) {
-
-		// TODO: Need to finish with other operators.
-
-		// TODO: DISCUSS: Is it better to have a method in the OperatorToken
-		// class that gives the order of operation?
-
-		if (token instanceof PlusToken)
-			return ADD_OR_SUBTRACT;
-		else
-			return CONSTANT;
+		// Looks for operation interface token and redirects it to operation interface.
+		OperationInterface ot = (OperationInterface) token;
+		return ot.OrderofOp();
 	}
 }
