@@ -1,5 +1,7 @@
 package picasso.parser.language.expressions;
 
+import picasso.parser.language.ExpressionTreeNode;
+
 /**
 * Represents an image in the Picasso language.
 * @author Jack d'Entremont
@@ -8,8 +10,6 @@ package picasso.parser.language.expressions;
 public class Image {
 	
 	String image;
-	double paramx;
-	double paramy;
 	
 	/**
 	 * Creates an image from a string representation of the image file.
@@ -18,26 +18,14 @@ public class Image {
 	 * @param paramx
 	 * @param paramy
 	 */
-	public Image(String image, double paramx, double paramy) {
-		this.paramx = paramx;
-		this.paramy = paramy;
+	public Image(String image) {
 		this.image = image;
 	}
 	
-	public Image imageClip(String img, double x, double y) {
-		Image pic = new Image(img, x, y);
-		if(x>1) {
-			x=1;
-		}
-		if(x<-1){
-			x=-1;
-		}
-		if(y>1) {
-			y=1;
-		}
-		if(y<-1) {
-			y=-1;
-		}
+	public Image imageClip(String img, ExpressionTreeNode x, ExpressionTreeNode y) {
+		Image pic = new Image(img);
+		
 		return pic;
 	}
+	
 }

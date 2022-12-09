@@ -28,28 +28,9 @@ public class Clamp extends UnaryFunction {
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result = param.evaluate(x, y);
-		double red = result.getRed();
-		double green = result.getGreen();
-		double blue = result.getBlue();
-		
-		if(red>1) {
-			red = 1;
-		}
-		if(red<-1){
-			red =-1;
-		}
-		if(green>1) {
-			green=1;
-		}
-		if(green<-1) {
-			green=-1;
-		}
-		if(blue>1) {
-			blue=1;
-		}
-		if(blue<-1) {
-			blue=-1;
-		}
+		double red = RGBColor.clamp(result.getRed());
+		double green = RGBColor.clamp(result.getGreen());
+		double blue = RGBColor.clamp(result.getBlue());
 		
 		return new RGBColor(red, green, blue);
 	}
