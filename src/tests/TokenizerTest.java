@@ -106,6 +106,24 @@ public class TokenizerTest {
 		assertEquals(new AdditionToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
 	}
+	
+	@Test
+	public void testTokenizeMinusOperatorExpression() {
+		String expression = "x-y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new SubtractionToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+	}
+	
+	@Test
+	public void testTokenizeTimesOperatorExpression() {
+		String expression = "x*y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new MultiplicationToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+	}
 
 	@Test
 	public void testTokenizeCombinedFunctionExpression() {
