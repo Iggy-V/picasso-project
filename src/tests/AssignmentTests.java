@@ -26,7 +26,7 @@ public class AssignmentTests {
 	@Test
 	public void testEqualsTokenNotConstant() {
 		EqualsToken token = new EqualsToken();
-		assertTrue(token.isConstant()== true);
+		assertTrue(token.isConstant()== false);
 	}
 	@Test
 	public void testEqualsEvaluation() {
