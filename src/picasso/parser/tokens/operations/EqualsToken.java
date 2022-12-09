@@ -10,4 +10,9 @@ public class EqualsToken extends CharToken implements OperationInterface {
 	public EqualsToken() {
 		super(CharConstants.EQUAL);
 	}
+	@Override
+	public final int OrderofOp() {
+		return EQUALS;
+	}
+	
 }
