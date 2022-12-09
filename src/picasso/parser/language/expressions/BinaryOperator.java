@@ -23,7 +23,7 @@ public abstract class BinaryOperator extends ExpressionTreeNode{
 	public BinaryOperator(ExpressionTreeNode param, ExpressionTreeNode param2) {
 		this.param = param;
 		this.param2 = param2;
-	}
+	}	
 	
 	@Override
 	public boolean equals(Object o) {

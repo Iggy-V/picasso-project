@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import picasso.parser.ParseException;
 import picasso.parser.Tokenizer;
+import picasso.parser.language.expressions.RGBColor;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
@@ -82,12 +83,19 @@ public class TokenizerTest {
 
 	@Test
 	public void testTokenizeBasicFunctionExpression() {
-		String expression = "floor(x)";
-		tokens = tokenizer.parseTokens(expression);
-		assertEquals(new FloorToken(), tokens.get(0));
-		assertEquals(new LeftParenToken(), tokens.get(1));
-		assertEquals(new IdentifierToken("x"), tokens.get(2));
-		assertEquals(new RightParenToken(), tokens.get(3));
+		String[] expressions = {"floor(x)", "ceil(x)", "sin(x)", "cos(x)", "abs(x)"};
+		Token[] tokenList = {new FloorToken(), new CeilToken(), new SinToken(), new CosToken(), new AbsToken()};
+
+		for(int i=0;i<=expressions.length-1;i++){
+		
+			//String expression = "floor(x)";
+			tokens = tokenizer.parseTokens(expressions[i]);
+			assertEquals(tokenList[i], tokens.get(0));
+			assertEquals(new LeftParenToken(), tokens.get(1));
+			assertEquals(new IdentifierToken("x"), tokens.get(2));
+			assertEquals(new RightParenToken(), tokens.get(3));
+			
+		}
 	}
 	
 	@Test

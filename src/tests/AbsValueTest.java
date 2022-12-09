@@ -5,17 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import picasso.parser.language.expressions.Cosine;
+import picasso.parser.language.expressions.Absolute;
 import picasso.parser.language.expressions.RGBColor;
 import picasso.parser.language.expressions.X;
-import picasso.parser.tokens.functions.CosToken;
+import picasso.parser.tokens.functions.AbsToken;
+
 
 public class AbsValueTest {
 	
 	@Test
 	public void testAbsTokenDescription() {
 		AbsToken token = new AbsToken();
-		assertEquals(token.toString(),"Cosine Function Token");
+		assertEquals(token.toString(),"Absolute Function Token");
 	}
 	@Test
 	public void testAbsTokenFunction() {

@@ -1,6 +1,8 @@
 package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.parser.IdentifierAnalyzer;
+
 
 /**
  * Represents a variable
@@ -18,8 +20,10 @@ public class Variable extends ExpressionTreeNode {
 
 	@Override
 	public RGBColor evaluate(double x, double y) {
+
 		// TODO Auto-generated method stub
 		// Should be set to some value using assignment.
+		
 		return null;
 	}
 

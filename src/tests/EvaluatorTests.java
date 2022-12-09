@@ -120,5 +120,71 @@ public class EvaluatorTests {
 					myTree.evaluate(testVal, testVal));
 		}
 	}
+	@Test
+	public void testAdditionEvaluation() {
+		Addition myTree = new Addition(new X(), new Y());
 
-}
+		// some straightforward tests
+		assertEquals(new RGBColor(0.6 + (-1), 0.6 + (-1), 0.6 + (-1)), myTree.evaluate(.6, -1));
+		assertEquals(new RGBColor(0 + (-1), 0 + (-1), 0 + (-1)), myTree.evaluate(0, -1));
+		assertEquals(new RGBColor((-0.3 + 1), (-0.3 + 1), (-0.3 + 1)), myTree.evaluate(-0.3, 1));
+		
+		// test the ints
+		for(int i=-1;i<=1;i++){
+			assertEquals(new RGBColor(i+(-i), i+(-i), i+(-i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(i+i, i+i, i+i), myTree.evaluate(i, i));
+		}
+
+	}
+
+	@Test
+	public void testSinEvaluation() {
+		Sin myTree = new Sin(new X());
+
+		// some straightforward tests
+		assertEquals(new RGBColor(Math.sin(0.6), Math.sin(0.6), Math.sin(0.6)), myTree.evaluate(.6, -1));
+		assertEquals(new RGBColor(Math.sin(0), Math.sin(0), Math.sin(0)), myTree.evaluate(0, -1));
+		assertEquals(new RGBColor(Math.sin(-1), Math.sin(-1), Math.sin(-1)), myTree.evaluate(-1, -1));
+
+		// test the ints
+		for(int i=-1;i<=1;i++){
+			assertEquals(new RGBColor(Math.sin(i), Math.sin(i), Math.sin(i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(Math.sin(i), Math.sin(i), Math.sin(i)), myTree.evaluate(i, i));
+		}
+
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+		for (double testVal : tests) {
+			double sinOfTestVal = Math.sin(testVal);
+			assertEquals(new RGBColor(sinOfTestVal, sinOfTestVal, sinOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(sinOfTestVal, sinOfTestVal, sinOfTestVal),
+					myTree.evaluate(testVal, testVal));
+		}
+	}
+	@Test
+	public void testCeilEvaluation() {
+		Ceil myTree = new Ceil(new X());
+
+		// some straightforward tests
+		assertEquals(new RGBColor(Math.ceil(0.6), Math.ceil(0.6), Math.ceil(0.6)), myTree.evaluate(.6, -1));
+		assertEquals(new RGBColor(Math.ceil(0), Math.ceil(0), Math.ceil(0)), myTree.evaluate(0, -1));
+		assertEquals(new RGBColor(Math.ceil(-1), Math.ceil(-1), Math.ceil(-1)), myTree.evaluate(-1, -1));
+
+		// test the ints
+		for(int i=-1;i<=1;i++){
+			assertEquals(new RGBColor(Math.ceil(i), Math.ceil(i), Math.ceil(i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(Math.ceil(i), Math.ceil(i), Math.ceil(i)), myTree.evaluate(i, i));
+		}
+
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+
+		for (double testVal : tests) {
+			double ceilOfTestVal = Math.ceil(testVal);
+			assertEquals(new RGBColor(ceilOfTestVal, ceilOfTestVal, ceilOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(ceilOfTestVal, ceilOfTestVal, ceilOfTestVal),
+					myTree.evaluate(testVal, testVal));
+		}
+	}
+
+	}
