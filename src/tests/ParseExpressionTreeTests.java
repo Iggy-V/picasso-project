@@ -39,6 +39,16 @@ public class ParseExpressionTreeTests {
 		ExpressionTreeNode e = parser.makeExpression("x");
 		assertEquals(new X(), e);
 	}
+	
+	@Test
+	public void orderofOpTest() {
+		ExpressionTreeNode e = parser.makeExpression("x + y * x");
+		assertEquals(new Addition(new X(), new Multiplication(new Y(), new Y())), e);
+		
+		e = parser.makeExpression("x * y - y");
+		assertEquals(new Subtraction(new Multiplication(new X(), new Y()), new Y()), e);
+	
+	}
 
 	@Test
 	public void additionExpressionTests() {
@@ -54,6 +64,36 @@ public class ParseExpressionTreeTests {
 		
 		e1 = parser.makeExpression("x + y + [ -.51, 0, 1]");
 		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
+	}
+	
+	@Test
+	public void subtractionExpressionTests() {
+		ExpressionTreeNode e = parser.makeExpression("x - y");
+		assertEquals(new Subtraction(new X(), new Y()), e);
+		
+		ExpressionTreeNode e1 = parser.makeExpression("x-y");
+		assertEquals(new Subtraction(new X(), new Y()), e1);
+
+		e1 = parser.makeExpression("[1,.3,-1] - y");
+		assertEquals(new Subtraction(new RGBColor(1, .3, -1), new Y()), e1);
+		
+		e1 = parser.makeExpression("x - y - [ -.51, 0, 1]");
+		assertEquals(new Subtraction(new Subtraction(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
+	}
+	
+	@Test
+	public void multiplicationExpressionTests() {
+		ExpressionTreeNode e = parser.makeExpression("x * y");
+		assertEquals(new Multiplication(new X(), new Y()), e);
+		
+		ExpressionTreeNode e1 = parser.makeExpression("x*y");
+		assertEquals(new Multiplication(new X(), new Y()), e1);
+
+		e1 = parser.makeExpression("[1,.3,-1] * y");
+		assertEquals(new Multiplication(new RGBColor(1, .3, -1), new Y()), e1);
+		
+		e1 = parser.makeExpression("x * y * [ -.51, 0, 1]");
+		assertEquals(new Multiplication(new Multiplication(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
 	}
 
 	@Test
