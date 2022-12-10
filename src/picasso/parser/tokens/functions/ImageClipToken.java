@@ -1,35 +1,13 @@
 package picasso.parser.tokens.functions;
 
-import picasso.parser.tokens.Token;
 
 /**
-* Represents the image clip token.
+* Represents the image clip function token.
 * @author Jack d'Entremont
 */
-public class ImageClipToken extends Token {
+public class ImageClipToken extends FunctionToken {
 	
-	private String myName;
-	
-	public ImageClipToken(String value) {
-		super("Function Token");
-		myName = value;
-	}
-	
-	public String getName() {
-		return myName;
-	}
-	
-	@Override
-	public boolean isFunction() {
-		return true;
-	}
-	
-	@Override
-	public boolean isConstant() {
-		return false;
-	}
-	
-	public String toString() {
-		return super.toString() + ": " + myName;
+	public ImageClipToken() {
+		super("Image Clip Function Token");
 	}
 }
