@@ -1,4 +1,6 @@
-package picasso.parser.tokens;
+package picasso.parser.tokens.functions;
+
+import picasso.parser.tokens.Token;
 
 /**
 * Represents the image clip token.
