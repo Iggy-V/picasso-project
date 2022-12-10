@@ -6,7 +6,7 @@ import picasso.parser.language.expressions.Clamp;
 import picasso.parser.tokens.Token;
 
 /**
-* Handles parsing the clamp function.abstract
+* Handles parsing the clamp function.
 *
 * @author Jack d'Entremont
 * 
