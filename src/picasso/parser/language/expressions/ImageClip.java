@@ -7,10 +7,11 @@ import picasso.parser.language.ExpressionTreeNode;
 *
 * @author Jack d'Entremont
 */
-public class ImageClip extends Image {
+public class ImageClip extends ExpressionTreeNode {
 	
-	ExpressionTreeNode paramx;
-	ExpressionTreeNode paramy;
+	private String img;
+	private ExpressionTreeNode paramx;
+	private ExpressionTreeNode paramy;
 	
 	/**
 	 * Creates an image clip expression that takes as parameters an image and x,y coordinates to 
@@ -21,9 +22,9 @@ public class ImageClip extends Image {
 	 * @param paramy
 	 */
 	public ImageClip(String img, ExpressionTreeNode paramx, ExpressionTreeNode paramy) {
-		super(img);
 		this.paramx = paramx;
 		this.paramy = paramy;
+		this.img = img;
 	}
 	
 	/**
