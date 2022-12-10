@@ -8,10 +8,10 @@ import picasso.parser.tokens.Token;
 */
 public class ImageClipToken extends Token {
 	
-	private final String myName;
+	private String myName;
 	
 	public ImageClipToken(String value) {
-		super("Image Clip Token");
+		super("Function Token");
 		myName = value;
 	}
 	
@@ -27,5 +27,9 @@ public class ImageClipToken extends Token {
 	@Override
 	public boolean isConstant() {
 		return false;
+	}
+	
+	public String toString() {
+		return super.toString() + ": " + myName;
 	}
 }
