@@ -15,7 +15,6 @@ import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
 import picasso.parser.tokens.operations.*; // needed to import this for binary operators.
-import picasso.parser.language.ExpressionTreeNode;
 
 public class TokenizerTest {
 
@@ -145,16 +144,6 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new PlusToken(), tokens.get(3));
 		assertEquals(new IdentifierToken("y"), tokens.get(4));
-	}
-	
-	@Test
-	public void tesTokenizeImageClipExpression() {
-		String img = "vortex.jpg";
-		ExpressionTreeNode x;
-		ExpressionTreeNode y;
-		String expression = "imageClip(img,x,y)";
-		tokens = tokenizer.parseTokens(expression);
-		assertEquals(new ImageClipToken(img, x, y), tokens.get(0));
 	}
 
 }
