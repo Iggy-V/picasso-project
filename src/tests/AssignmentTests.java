@@ -9,7 +9,7 @@ import picasso.parser.language.expressions.Equals;
 import picasso.parser.language.expressions.RGBColor;
 import picasso.parser.language.expressions.X;
 import picasso.parser.language.expressions.Y;
-import picasso.parser.tokens.EqualsToken;
+import picasso.parser.tokens.operations.EqualsToken;
 
 
 public class AssignmentTests {
