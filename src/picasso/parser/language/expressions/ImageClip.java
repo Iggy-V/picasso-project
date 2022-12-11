@@ -9,7 +9,7 @@ import picasso.parser.language.ExpressionTreeNode;
 */
 public class ImageClip extends ExpressionTreeNode {
 	
-	private String img;
+	public static Image img;
 	private ExpressionTreeNode paramx;
 	private ExpressionTreeNode paramy;
 	
@@ -21,7 +21,7 @@ public class ImageClip extends ExpressionTreeNode {
 	 * @param paramx
 	 * @param paramy
 	 */
-	public ImageClip(String img, ExpressionTreeNode paramx, ExpressionTreeNode paramy) {
+	public ImageClip(Image img, ExpressionTreeNode paramx, ExpressionTreeNode paramy) {
 		this.paramx = paramx;
 		this.paramy = paramy;
 		this.img = img;
@@ -32,11 +32,10 @@ public class ImageClip extends ExpressionTreeNode {
 	 * the new resulting color to the image.
 	 */
 	public RGBColor evaluate(double x, double y) {
-		RGBColor result = paramx.evaluate(x, y);
-		double red = result.getRed();
-		double green = result.getGreen();
-		double blue = result.getBlue();
+		double xexpr = Clamp.clamp((paramx.evaluate(x,y)).getRed());
+		double yexpr = Clamp.clamp((paramy.evaluate(x,y)).getRed());
 		
-		return new RGBColor(red, green, blue);
+		RGBColor imgColor = img.evaluate(xexpr, yexpr);
+		return imgColor;
 	}
 }

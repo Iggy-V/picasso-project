@@ -10,6 +10,10 @@ import picasso.parser.language.ExpressionTreeNode;
 */
 public class Clamp extends UnaryFunction {
 	
+	public static double red;
+	public static double green;
+	public static double blue;
+	
 	/**
 	 * Create a clamp expression that takes as a parameter the given expression
 	 * 
@@ -28,10 +32,21 @@ public class Clamp extends UnaryFunction {
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result = param.evaluate(x, y);
-		double red = RGBColor.clamp(result.getRed());
-		double green = RGBColor.clamp(result.getGreen());
-		double blue = RGBColor.clamp(result.getBlue());
+		double red = clamp(result.getRed());
+		double green = clamp(result.getGreen());
+		double blue = clamp(result.getBlue());
 		
 		return new RGBColor(red, green, blue);
+	}
+	
+	public static double clamp(double x) {
+		double result = x;
+		if (result>1) {
+			result=1;
+		}
+		if (result<-1) {
+			result=-1;
+		}
+		return result;
 	}
 }

@@ -21,6 +21,6 @@ public class ImageClipAnalyzer implements SemanticAnalyzerInterface {
 			throw new ParseException("Expected an Image Clip function.");
 		}
 		ImageClipToken ict = (ImageClipToken) t;
-		return new ImageClip(ict.getString(), ict.getX(), ict.getY());
+		return new ImageClip(ict.getImage(), ict.getX(), ict.getY());
 	}
 }
