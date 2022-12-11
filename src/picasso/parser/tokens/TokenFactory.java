@@ -12,7 +12,6 @@ import picasso.parser.language.BuiltinFunctionsReader;
 import picasso.parser.tokens.chars.CommaToken;
 import picasso.parser.tokens.chars.LeftBracketToken;
 import picasso.parser.tokens.chars.RightBracketToken;
-import picasso.parser.tokens.functions.ImageToken;
 import picasso.parser.tokens.operations.EqualsToken;
 
 /**

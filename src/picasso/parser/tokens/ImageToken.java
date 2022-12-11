@@ -1,6 +1,4 @@
-package picasso.parser.tokens.functions;
-
-import picasso.parser.tokens.Token;
+package picasso.parser.tokens;
 
 /**
 * Represents an image token.
