@@ -9,6 +9,7 @@ import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
 import static javax.swing.JOptionPane.showMessageDialog;
+import picasso.view.History;
 
 
 import picasso.view.Input;
@@ -41,6 +42,7 @@ public class Evaluator implements Command<Pixmap> {
 					
 				}
 			}
+
 		}
 		catch (NullPointerException e){showMessageDialog(null, "Invalid input - please enter valid expression");}
 
@@ -65,8 +67,13 @@ public class Evaluator implements Command<Pixmap> {
 
 
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
-		return expTreeGen.makeExpression(Input.getInput());
+		if (History.getTimeTravellingStatus()){
+			return expTreeGen.makeExpression(History.retrieveHistory());
+		}
+		else{
 
+		return expTreeGen.makeExpression(Input.getInput());
+		}
 		// return new Multiply( new X(), new Y() );
 	}
 

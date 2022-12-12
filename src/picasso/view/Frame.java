@@ -1,5 +1,12 @@
 package picasso.view;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -7,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -22,13 +30,42 @@ import picasso.view.commands.*;
  */
 
 @SuppressWarnings("serial")
-public class Frame extends JFrame {
+public class Frame extends JFrame implements KeyListener, FocusListener, MouseListener{
 
 	private JTextField entry;
     private JLabel jLabel1;
     private JButton evaluate;
     public static String textFieldValue;
 	public Canvas canvas;
+
+	public void keyPressed(KeyEvent e){
+		System.out.println("key pressed");
+	}
+
+	public void keyReleased(KeyEvent e){
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+			System.out.println("right");
+			History.timeTravel();
+			History.backToTheFuture();
+			Evaluator ev = new Evaluator();
+			ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
+			action.execute(canvas.getPixmap());
+			canvas.refresh();
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT){
+			System.out.println("left, index:" + History.getIndex() + " " + History.getHistory());
+			History.timeTravel();
+			History.timeMachine();
+			Evaluator ev = new Evaluator();
+			ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
+			action.execute(canvas.getPixmap());
+			canvas.refresh();
+
+		}
+	}
+	public void keyTyped(KeyEvent e) {
+        System.out.println("keyTyped");
+    }
     
 	public Frame(Dimension size) {
 		
@@ -38,9 +75,15 @@ public class Frame extends JFrame {
 		// create GUI components
 		canvas = new Canvas(this);
 		canvas.setSize(size);
-
+	
+		canvas.addMouseListener(this);
+		canvas.addFocusListener(this);
+		canvas.setFocusable(true);
 		
+		  
 		entry = new JTextField(25);
+		entry.addFocusListener(this);
+
 		jLabel1 = new JLabel();
 		evaluate = new JButton("Submit");
 		jLabel1.setText("Enter the expression:");
@@ -72,8 +115,49 @@ public class Frame extends JFrame {
 		});
 		//Input.setInput("");
 		// add our container to Frame and show it
+		addKeyListener(this);
+		setFocusable(true);
+		setFocusTraversalKeysEnabled(false);
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
 		pack();
 	}
+
+	public void focusGained(FocusEvent e) {
+        //displayMessage("Focus gained", e);
+    }
+
+    public void focusLost(FocusEvent e) {
+        //displayMessage("Focus lost", e);
+    }
+
+    void displayMessage(String prefix, FocusEvent e) {
+        // System.out.println(prefix
+        //             + (e.isTemporary() ? " (temporary):" : ":")
+        //             +  e.getComponent().getClass().getName()
+        //             + "; Opposite component: " 
+        //             + (e.getOppositeComponent() != null ?
+        //                 e.getOppositeComponent().getClass().getName() : "null")
+        //             + "\n"); 
+		
+    }
+	public void mousePressed(MouseEvent e) {
+        ;
+    }
+     
+    public void mouseReleased(MouseEvent e) {
+		;
+    }
+     
+    public void mouseEntered(MouseEvent e) {
+        ;
+    }
+	public void mouseExited(MouseEvent e) {
+    	;
+    }
+     
+    public void mouseClicked(MouseEvent e) {
+		;
+		requestFocus();
+    }
 }

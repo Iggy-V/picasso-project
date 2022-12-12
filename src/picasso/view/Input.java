@@ -23,6 +23,11 @@ public class Input {
      * @param x
      */
     public static void setInput(String x) throws IllegalArgumentException{
-       input = x;
+       
+        input = x;
+        if (input != "" || input != null){
+            History.AddHistory(Input.getInput());
+        }
+       
     }
 }
