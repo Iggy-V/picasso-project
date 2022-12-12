@@ -13,6 +13,7 @@ import picasso.parser.tokens.chars.CommaToken;
 import picasso.parser.tokens.chars.LeftBracketToken;
 import picasso.parser.tokens.chars.RightBracketToken;
 import picasso.parser.tokens.operations.EqualsToken;
+import picasso.parser.tokens.functions.InvertToken;
 
 /**
  * Looks at a generic token and creates the appropriate token type
@@ -50,6 +51,8 @@ public class TokenFactory {
 				return parseColorToken(tokenizer);
 			case '"':
 				return new ImageToken(tokenizer.sval);
+			case '!':
+				return new InvertToken();
 			default:
 				Token ct = CharTokenFactory.getToken(result);
 
