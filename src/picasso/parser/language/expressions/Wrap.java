@@ -40,14 +40,17 @@ public class Wrap extends UnaryFunction {
 	}
 	
 	public static double wrap(double x) {
-		double difference = x - 1;
-		if (difference>0) {
-			difference=-1+difference;
+		double result = x;
+		if (x>=1) {
+			while (result > 1) {
+				result = result - 2;
+			}
 		}
-		difference = x + 1;
-		if (difference<0) {
-			difference= 1 + difference;
+		else if (x<=-1) {
+			while (result < -1) {
+				result = result + 2;
+			}
 		}
-		return difference;
+		return result;
 	}
 }
