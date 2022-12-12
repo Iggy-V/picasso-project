@@ -13,7 +13,7 @@ import picasso.parser.tokens.Token;
 public class WrapAnalyzer extends UnaryFunctionAnalyzer {
 	
 	@Override
-	public ExpressionTreeNode generateExpressionTree(Stack<Tokens> tokens) {
+	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop();
 		return new Wrap(SemanticAnalyzer.getInstance().generateExpressionTree(tokens));
 	}
