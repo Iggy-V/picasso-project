@@ -18,7 +18,7 @@ public class InvertTest {
 	@Test
 	public void testInvertTokenFunction() {
 		InvertToken token = new InvertToken();
-		assertTrue(token.isFunction()== true);
+		assertTrue(token.isFunction()== false);
 	}
 	
 	@Test
