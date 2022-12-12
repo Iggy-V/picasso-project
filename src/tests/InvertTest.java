@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import picasso.parser.language.expressions.Invert;
 import picasso.parser.language.expressions.RGBColor;
 import picasso.parser.language.expressions.X;
-import picasso.parser.tokens.operations.InvertToken;
+import picasso.parser.tokens.InvertToken;
 
 public class InvertTest {
 	
