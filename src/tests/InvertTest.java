@@ -3,16 +3,16 @@ package tests;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import picasso.parser.language.expressions.Invert;
-import picasso.parser.tokens.functions.InvertToken;
 import picasso.parser.language.expressions.RGBColor;
 import picasso.parser.language.expressions.X;
+import picasso.parser.tokens.operations.InvertToken;
 
 public class InvertTest {
 	
 	@Test
 	public void TestInvertTokenDescription() {
 		InvertToken token = new InvertToken();
-		assertEquals(token.toString(), "! Function Token");
+		assertEquals(token.toString(), "Invert Function Token");
 	}
 	
 	@Test

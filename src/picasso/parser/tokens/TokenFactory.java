@@ -13,7 +13,7 @@ import picasso.parser.tokens.chars.CommaToken;
 import picasso.parser.tokens.chars.LeftBracketToken;
 import picasso.parser.tokens.chars.RightBracketToken;
 import picasso.parser.tokens.operations.EqualsToken;
-import picasso.parser.tokens.functions.InvertToken;
+import picasso.parser.tokens.operations.InvertToken;
 
 /**
  * Looks at a generic token and creates the appropriate token type

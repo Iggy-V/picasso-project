@@ -10,10 +10,6 @@ import picasso.parser.language.ExpressionTreeNode;
 */
 public class Invert extends UnaryFunction {
 	
-	public static double red;
-	public static double green;
-	public static double blue;
-	
 	/**
 	 * Create a ! expression that takes as a parameter the given expression
 	 * 
@@ -36,11 +32,5 @@ public class Invert extends UnaryFunction {
 		double blue = -1 * result.getBlue();
 		
 		return new RGBColor(red, green, blue);
-	}
-	
-	public static double invert(double x) {
-		double result = x;
-		result = -x;
-		return result;
 	}
 }
