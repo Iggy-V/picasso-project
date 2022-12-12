@@ -1,75 +1,39 @@
-
 package picasso.parser.language.expressions;
+import java.lang.Math;
 
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the exponentiate operator in the Picasso language
+ * Represents the exp function in the Picasso language.
+ * 
  * @author Ignas Volcokas
- *
+ * 
  */
-public class Exp extends BinaryOperator{ 
-	
+public class Exp extends UnaryFunction {
+
 	/**
-	 * Creates an exponentiate expression that takes two parameters for an expression
+	 * Create a exp expression that takes as a parameter the given expression
 	 * 
-	 * @param param
-	 * @param param2
+	 * @param param the expression to exp
 	 */
-	public Exp(ExpressionTreeNode param, ExpressionTreeNode param2) {
-		super(param, param2);
+	public Exp(ExpressionTreeNode param) {
+		super(param);
 	}
+
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the exponentiate of
-	 * the function's parameter..
+	 * Evaluates this expression at the given x,y point by evaluating the exp of
+	 * the function's parameter.
+	 * 
+	 * @return the color from evaluating the exp of the expression's parameter
 	 */
-	
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result = param.evaluate(x, y);
-		RGBColor result2 = param2.evaluate(x, y);
-		double red = Math.pow(result.getRed(), result2.getRed());
-		double green = Math.pow(result.getGreen(), result2.getGreen());
-		double blue = Math.pow(result.getBlue(), result2.getBlue());
-		
+		double red = Math.exp(result.getRed());
+		double green = Math.exp(result.getGreen());
+		double blue = Math.exp(result.getBlue());
+
 		return new RGBColor(red, green, blue);
-	}
-	
-	/**
-	 * Returns the string representation of the function in the format "<ClassName>:
-	 * <parameter>"
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		String classname = this.getClass().getName();
-		return classname.substring(classname.lastIndexOf(".")) + "(" + param + ")";
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
-
-		if (!(o instanceof Exp)) {
-			return false;
-		}
-
-		// Make sure the objects are the same type
-
-		if (o.getClass() != this.getClass()) {
-			return false;
-		}
-
-		Exp a = (Exp) o;
-
-		// check if their parameters are equal
-		if (!this.param.equals(a.param)) {
-			return false;
-		}
-		return true;
 	}
 
 }

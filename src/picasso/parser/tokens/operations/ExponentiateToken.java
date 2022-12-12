@@ -8,8 +8,8 @@ import picasso.parser.tokens.chars.CharToken;
  * 
  * @author Ignas Volcokas
  */
-public class ExpToken extends CharToken implements OperationInterface {
-	public ExpToken() {
+public class ExponentiateToken extends CharToken implements OperationInterface {
+	public ExponentiateToken() {
 		super(CharConstants.SLASH);
 		
 	}
