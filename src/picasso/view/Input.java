@@ -25,9 +25,9 @@ public class Input {
     public static void setInput(String x) throws IllegalArgumentException{
        
         input = x;
-        if (input != "" || input != null){
-            History.AddHistory(Input.getInput());
-        }
+        
+        //History.AddHistory(Input.getInput());
+        
        
     }
 }

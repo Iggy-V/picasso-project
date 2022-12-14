@@ -5,17 +5,20 @@ import java.util.*;
 
 public class History {
     
-    private static List<String> list = new ArrayList<String>();
+    private static List<String> listt = new ArrayList<String>();
     private static int index = -1;
     private static boolean timeTraveler = false;
 
     public static void AddHistory(String x){
-        list.add(x);
-        index = list.size()-1;
+        if(x!="" && x != null){
+            listt.add(x);
+            index = listt.size()-1;
+        }
+        
     }
 
     public static List<String> getHistory(){
-        return list;
+        return listt;
     }
     public static int getIndex(){
         return index;
@@ -23,12 +26,12 @@ public class History {
     public static void timeMachine(){
         index -= 1;
         if (index < 0){
-            index = list.size() -1;
+            index = listt.size() -1;
         }
     }
     public static void backToTheFuture(){
         index += 1;
-        if (index > list.size()-1){
+        if (index > listt.size()-1){
             index = 0;
         }   
     }
@@ -36,7 +39,7 @@ public class History {
 
     public static String retrieveHistory(){
         timeTravel();
-        return list.get(index);
+        return listt.get(index);
     }
 
     public static void timeTravel(){
@@ -47,5 +50,10 @@ public class History {
         return timeTraveler;
     }
 
+    public static void deleteHistory(){
+        int i = listt.size()-1;
+        listt.remove(i);
+        index = listt.size()-1;
+    }
 
 }
