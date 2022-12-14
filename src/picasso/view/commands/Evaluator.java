@@ -43,8 +43,15 @@ public class Evaluator implements Command<Pixmap> {
 
 		}
 		catch (NullPointerException e){
+			if (History.getHistory().size() <= 0){
+				showMessageDialog(null, "No History");
+			}
+			else{
 			showMessageDialog(null, "Invalid input - please enter valid expression");
+			}
 			History.deleteHistory();
+			//TODO 
+			// still adds wrong inputs if they are not in a form like [0,0,]
 		}
 
 	}

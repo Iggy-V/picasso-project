@@ -1,11 +1,13 @@
 package picasso.view;
 import java.util.ArrayList;
 import java.util.*;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 
 
 public class History {
     
-    private static List<String> listt = new ArrayList<String>();
+        private static List<String> listt = new ArrayList<String>();
     private static int index = -1;
     private static boolean timeTraveler = false;
 
@@ -39,7 +41,13 @@ public class History {
 
     public static String retrieveHistory(){
         timeTravel();
-        return listt.get(index);
+        if (index < 0){
+
+            return null;
+        }
+        else{
+            return listt.get(index);
+        }
     }
 
     public static void timeTravel(){
@@ -51,9 +59,12 @@ public class History {
     }
 
     public static void deleteHistory(){
+        if (listt.size()>0){
         int i = listt.size()-1;
         listt.remove(i);
         index = listt.size()-1;
+            
+        }
     }
 
 }
