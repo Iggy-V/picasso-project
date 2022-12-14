@@ -3,12 +3,12 @@ package picasso.view.commands;
 import java.awt.Color;
 import java.awt.Dimension;
 
-
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
 import static javax.swing.JOptionPane.showMessageDialog;
+import picasso.view.History;
 
 
 import picasso.view.Input;
@@ -38,11 +38,14 @@ public class Evaluator implements Command<Pixmap> {
 					Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
 					target.setColor(imageX, imageY, pixelColor);
 					
-					
 				}
 			}
+
 		}
-		catch (NullPointerException e){showMessageDialog(null, "Invalid input - please enter valid expression");}
+		catch (NullPointerException e){
+			showMessageDialog(null, "Invalid input - please enter valid expression");
+			History.deleteHistory();
+		}
 
 	}
 
@@ -65,8 +68,15 @@ public class Evaluator implements Command<Pixmap> {
 
 
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
-		return expTreeGen.makeExpression(Input.getInput());
+		if (History.getTimeTravellingStatus()){
+			return expTreeGen.makeExpression(History.retrieveHistory());
+		}
+		else{
+		History.AddHistory(Input.getInput());
+		//History.getHistory().removeAll(Arrays.asList("", null)); // clears wrong inputs - empty strings
 
+		return expTreeGen.makeExpression(Input.getInput());
+		}
 		// return new Multiply( new X(), new Y() );
 	}
 
