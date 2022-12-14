@@ -2,7 +2,6 @@ package picasso.view.commands;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.Arrays;
 
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
