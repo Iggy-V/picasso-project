@@ -3,3 +3,6 @@
 *=Times
 =Equals
 !=Invert
+/=Division
+%=Module
+^=Exponentiate
