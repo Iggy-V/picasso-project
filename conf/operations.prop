@@ -2,4 +2,6 @@
 -=Subtraction
 *=Times
 =Equals
-
+/=Division
+%=Module
+^=Exponentiate
