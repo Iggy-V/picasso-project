@@ -1,7 +1,6 @@
 package picasso.view;
 import java.util.ArrayList;
 import java.util.*;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 
