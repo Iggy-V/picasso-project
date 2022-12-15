@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import picasso.parser.ParseException;
 import picasso.parser.Tokenizer;
-import picasso.parser.language.expressions.RGBColor;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
@@ -146,6 +145,5 @@ public class TokenizerTest {
 		assertEquals(new PlusToken(), tokens.get(3));
 		assertEquals(new IdentifierToken("y"), tokens.get(4));
 	}
-	// TODO: Test arithmetic (rather than function-based) expressions ...
 
 }

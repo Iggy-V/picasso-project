@@ -2,8 +2,9 @@ package picasso.parser.tokens.functions;
 
 
 /**
-* Represents an perlin color function token.
-* @author Ignas Volcokas
+* Represents PerlinColor function token
+* 
+* @author Joe Condie
 */
 public class PerlinColorToken extends FunctionToken {
 	

@@ -11,10 +11,11 @@ import picasso.parser.tokens.Token;
  */
 public abstract class FunctionToken extends Token {
 
+	
 	public FunctionToken(String name) {
 		super(name);
 	}
-
+	
 	/**
 	 * @see picasso.parser.tokens.Token#isConstant()
 	 */

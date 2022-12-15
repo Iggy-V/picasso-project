@@ -23,6 +23,7 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 		// We always have x and y defined.
 		idToExpression.put("x", new X());
 		idToExpression.put("y", new Y());
+		//idToExpression.put("random()", new RandomColor());
 	}
 
 	@Override

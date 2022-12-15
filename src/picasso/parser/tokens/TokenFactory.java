@@ -12,6 +12,7 @@ import picasso.parser.language.BuiltinFunctionsReader;
 import picasso.parser.tokens.chars.CommaToken;
 import picasso.parser.tokens.chars.LeftBracketToken;
 import picasso.parser.tokens.chars.RightBracketToken;
+import picasso.parser.tokens.operations.EqualsToken;
 
 /**
  * Looks at a generic token and creates the appropriate token type
@@ -42,9 +43,15 @@ public class TokenFactory {
 					return new IdentifierToken(tokenizer.sval);
 				}
 				return t;
+			case '=':
+				return new EqualsToken();
 			case '[':
 				// parse a color token if it starts with a [
 				return parseColorToken(tokenizer);
+			case '"':
+				return new ImageToken(tokenizer.sval);
+			case '!':
+				return new InvertToken();
 			default:
 				Token ct = CharTokenFactory.getToken(result);
 

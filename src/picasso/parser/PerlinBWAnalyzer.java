@@ -7,11 +7,11 @@ import picasso.parser.language.expressions.*;
 import picasso.parser.tokens.Token;
 
 /**
-* Handles parsing the perlin color function
+* Handles parsing the perlin BW function
 *
 * @author Joe Condie
 */
-public class PerlinColorAnalyzer implements SemanticAnalyzerInterface {
+public class PerlinBWAnalyzer implements SemanticAnalyzerInterface {
 	
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
@@ -20,7 +20,7 @@ public class PerlinColorAnalyzer implements SemanticAnalyzerInterface {
 		ExpressionTreeNode param = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		ExpressionTreeNode param2 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		
-		return new PerlinColor(param, param2);
+		return new PerlinBW(param, param2);
 
 	}
 }
