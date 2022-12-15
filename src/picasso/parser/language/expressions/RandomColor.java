@@ -18,6 +18,7 @@ public class RandomColor extends ExpressionTreeNode {
 	private double green = rand.nextDouble()*(-1);
 	private double blue = rand.nextDouble()*(-1);
 	
+	
 	/**
 	 * Create a random color that takes as a parameter the given expression
 	 * 
