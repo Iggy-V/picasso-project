@@ -13,10 +13,16 @@ import picasso.parser.tokens.Token;
  * 
  */
 public class RandomAnalyzer implements SemanticAnalyzerInterface {
+	
+	{
+		IdentifierAnalyzer.idToExpression.put("random", new RandomColor());
+	}
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
-		return new RandomColor(SemanticAnalyzer.getInstance().generateExpressionTree(tokens));
+		tokens.pop();
+		return new RandomColor();
+		
 	}
 
 }
