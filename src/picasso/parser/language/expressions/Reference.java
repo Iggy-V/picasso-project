@@ -1,6 +1,8 @@
 package picasso.parser.language.expressions;
 
+import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.view.History;
 
 /**
 * Represents the $ call of history
@@ -8,15 +10,19 @@ import picasso.parser.language.ExpressionTreeNode;
 * @author Ignas Volcokas
 *
 */
+
 public class Reference extends ExpressionTreeNode {
 	
+    private String r;
+    public int x;
+	ExpressionTreeNode e;
 	/**
-	 * Create a ! expression that takes as a parameter the given expression
-	 * 
-	 * @param param the expression to invert
+     *  
 	 */
-	public Reference(int param) {
-		
+	public Reference(int x) {
+		this.r = History.getHistory().get(x);
+        ExpressionTreeGenerator exp = new ExpressionTreeGenerator();
+	    e = exp.makeExpression(r);
 	}
 	
 	/**
@@ -26,10 +32,10 @@ public class Reference extends ExpressionTreeNode {
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		RGBColor result = param.evaluate(x, y);
-		double red = -1 * result.getRed();
-		double green = -1 * result.getGreen();
-		double blue = -1 * result.getBlue();
+		RGBColor result = e.evaluate(x, y);
+		double red = result.getRed();
+		double green =result.getGreen();
+		double blue = result.getBlue();
 		
 		return new RGBColor(red, green, blue);
 	}
