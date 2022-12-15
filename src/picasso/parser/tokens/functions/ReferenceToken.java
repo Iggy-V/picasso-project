@@ -2,6 +2,7 @@ package picasso.parser.tokens.operations;
 
 import picasso.parser.language.CharConstants;
 import picasso.parser.tokens.chars.CharToken;
+import picasso.parser.tokens.operations.OperationInterface;
 
 /**
  * Represents the plus sign token
