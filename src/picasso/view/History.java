@@ -9,6 +9,7 @@ public class History {
     private static List<String> listt = new ArrayList<String>();
     private static int index = -1;
     private static boolean timeTraveler = false;
+    private static String present = "";
 
     public static void AddHistory(String x){
         if(x!="" && x != null){
@@ -21,6 +22,14 @@ public class History {
     public static List<String> getHistory(){
         return listt;
     }
+
+    public static String getPresent(){
+        if (index == -1){
+            return "";
+        }
+        return listt.get(index);
+    }
+
     public static int getIndex(){
         return index;
     }

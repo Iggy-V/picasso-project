@@ -38,6 +38,7 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
     private JButton evaluate;
     public static String textFieldValue;
 	public Canvas canvas;
+	public JLabel jLabel2 = new JLabel();
 
 	public void keyPressed(KeyEvent e){
 		System.out.println("key pressed");
@@ -48,8 +49,10 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 			System.out.println("right");
 			History.timeTravel();
 			History.backToTheFuture();
+			jLabel2.setText("Current Expression: " + History.getPresent());
 			Evaluator ev = new Evaluator();
 			ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
+
 			action.execute(canvas.getPixmap());
 			canvas.refresh();
 		}
@@ -57,8 +60,11 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 			System.out.println("left, index:" + History.getIndex() + " " + History.getHistory());
 			History.timeTravel();
 			History.timeMachine();
+			jLabel2.setText("Current Expression: " + History.getPresent());
 			Evaluator ev = new Evaluator();
 			ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
+			
+
 			action.execute(canvas.getPixmap());
 			canvas.refresh();
 
@@ -89,17 +95,22 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		evaluate = new JButton("Submit");
 		jLabel1.setText("Enter the expression:");
 		
+		jLabel2.setText("");
 		
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
-		commands.add("Open", new Reader());
-		//commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
-		commands.add("Save", new Writer());
-		commands.add("Read File", new FileReader(canvas));
-		commands.add(jLabel1);
-		commands.add(entry);
-		commands.add(evaluate);
+			commands.add("Open", new Reader());
+			//commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
+			commands.add("Save", new Writer());
+			commands.add("Read File", new FileReader(canvas));
+			commands.add(jLabel1);
+			commands.add(entry);
+			commands.add(evaluate);
 		
+		ButtonPanel commandsBottom = new ButtonPanel(canvas);
+			commandsBottom.add(jLabel2);
+			
+			
 		
 		Action action = new AbstractAction()
 		{
@@ -110,14 +121,24 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 				Evaluator ev = new Evaluator();
 				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
 				action.execute(canvas.getPixmap());
+				jLabel2.setText("Current Expression: " + Input.getInput());
 				canvas.refresh();
 				// TODO:
 				// Input.setInput("y+x"); why is this the one getting evluated
 			}
 		};
+		Action update = new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e){
+				System.out.println("updating label");
+				//jLabel2.setText("Current Expression: " + Input.getInput());
+				canvas.refresh();
+			}
+		};
 		//commands.add("Submit", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		evaluate.addActionListener(action);
 		entry.addActionListener(action);
+		entry.addActionListener(update);
 		//Input.setInput("");
 		// add our container to Frame and show it
 		addKeyListener(this);
@@ -125,6 +146,7 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		setFocusTraversalKeysEnabled(false);
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
+		getContentPane().add(commandsBottom, BorderLayout.SOUTH);
 		pack();
 	}
 

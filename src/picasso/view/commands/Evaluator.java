@@ -84,7 +84,7 @@ public class Evaluator implements Command<Pixmap> {
 		else{
 		History.AddHistory(Input.getInput());
 		//History.getHistory().removeAll(Arrays.asList("", null)); // clears wrong inputs - empty strings
-
+		System.out.println("added to history");
 		return expTreeGen.makeExpression(Input.getInput());
 		}
 		// return new Multiply( new X(), new Y() );
