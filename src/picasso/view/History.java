@@ -6,7 +6,7 @@ import java.util.*;
 
 public class History {
     
-        private static List<String> listt = new ArrayList<String>();
+    private static List<String> listt = new ArrayList<String>();
     private static int index = -1;
     private static boolean timeTraveler = false;
 
@@ -59,10 +59,9 @@ public class History {
 
     public static void deleteHistory(){
         if (listt.size()>0){
-        int i = listt.size()-1;
-        listt.remove(i);
-        index = listt.size()-1;
-            
+            int i = listt.size()-1;
+            listt.remove(i);
+            index = listt.size()-1; 
         }
     }
 
