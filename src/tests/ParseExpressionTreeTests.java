@@ -113,12 +113,12 @@ public class ParseExpressionTreeTests {
 		e = parser.makeExpression("floor( x + y )");
 		assertEquals(new Floor(new Addition(new X(), new Y())), e);
 	}
-	
+	@Test
 	public void cosFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("cos( x )");
 		assertEquals(new Cosine(new X()), e);
-		//e = parser.makeExpression("floor( x + y )");
-		//assertEquals(new Cosine(new Addition(new X(), new Y())), e);
+		e = parser.makeExpression("floor( x + y )");
+		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
 	}
 
 	@Test
@@ -140,9 +140,14 @@ public class ParseExpressionTreeTests {
 	}
 
 	@Test
-	public void ceilFunctionTests(){
-		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
-		assertEquals(new Ceil(new X()), e);
+	public void RGBToYCrCbFunctionTests(){
+		ExpressionTreeNode e = parser.makeExpression("RGBToYCrCb( x )");
+		assertEquals(new RGBToYCrCb(new X()), e);
+	}
+	@Test
+	public void YCrCbToRGBFunctionTests(){
+		ExpressionTreeNode e = parser.makeExpression("yCrCbToRGB( x )");
+		assertEquals(new YCrCbToRGB(new X()), e);
 	}
 
 }
