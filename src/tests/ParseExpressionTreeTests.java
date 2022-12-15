@@ -114,7 +114,6 @@ public class ParseExpressionTreeTests {
 		assertEquals(new Floor(new Addition(new X(), new Y())), e);
 	}
 	
-	@Test
 	public void cosFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("cos( x )");
 		assertEquals(new Cosine(new X()), e);
@@ -144,9 +143,6 @@ public class ParseExpressionTreeTests {
 	public void ceilFunctionTests(){
 		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
 		assertEquals(new Ceil(new X()), e);
-
-		e = parser.makeExpression("ceil( x + y )");
-		assertEquals(new Ceil(new Addition(new X(), new Y())), e);
 	}
 
 }

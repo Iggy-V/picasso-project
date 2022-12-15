@@ -69,7 +69,6 @@ public class EvaluatorTests {
 		}
 	}
 
-
 	@Test
 	public void testCosEvaluation() {
 		Cosine myTree = new Cosine(new X());
