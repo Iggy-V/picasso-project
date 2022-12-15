@@ -3,11 +3,13 @@ import java.util.ArrayList;
 import java.util.*;
 
 
+
 public class History {
     
     private static List<String> listt = new ArrayList<String>();
     private static int index = -1;
     private static boolean timeTraveler = false;
+    private static String present = "";
 
     public static void AddHistory(String x){
         if(x!="" && x != null){
@@ -20,6 +22,14 @@ public class History {
     public static List<String> getHistory(){
         return listt;
     }
+
+    public static String getPresent(){
+        if (index == -1){
+            return "";
+        }
+        return listt.get(index);
+    }
+
     public static int getIndex(){
         return index;
     }
@@ -39,7 +49,13 @@ public class History {
 
     public static String retrieveHistory(){
         timeTravel();
-        return listt.get(index);
+        if (index < 0){
+
+            return null;
+        }
+        else{
+            return listt.get(index);
+        }
     }
 
     public static void timeTravel(){
@@ -51,9 +67,11 @@ public class History {
     }
 
     public static void deleteHistory(){
-        int i = listt.size()-1;
-        listt.remove(i);
-        index = listt.size()-1;
+        if (listt.size()>0){
+            int i = listt.size()-1;
+            listt.remove(i);
+            index = listt.size()-1; 
+        }
     }
 
 }

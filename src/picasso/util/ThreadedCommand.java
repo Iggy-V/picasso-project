@@ -2,7 +2,6 @@ package picasso.util;
 
 import javax.swing.JComponent;
 
-
 /**
  * Execute a long running command in a separate thread and display the results
  * in a component while the command is running.
