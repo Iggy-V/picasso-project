@@ -9,6 +9,9 @@ import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
 import picasso.parser.tokens.operations.*;
+import picasso.view.History;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 
 /**
  * Parses a string into an expression tree based on rules for arithmetic.
@@ -44,8 +47,9 @@ public class ExpressionTreeGenerator {
 
 		// Is this the best place to put this check?
 		if (!postfix.isEmpty()) {
-			throw new ParseException(
-					"Extra operands without operators or functions");
+			History.deleteHistory();
+			showMessageDialog(null, "Invalid input - please enter valid expression");
+			throw new ParseException("Extra operands without operators or functions");
 		}
 		return root;
 	}

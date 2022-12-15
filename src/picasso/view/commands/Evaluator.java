@@ -2,6 +2,7 @@ package picasso.view.commands;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.text.ParseException;
 
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
@@ -43,9 +44,18 @@ public class Evaluator implements Command<Pixmap> {
 
 		}
 		catch (NullPointerException e){
+			if (History.getHistory().size() <= 0){
+				showMessageDialog(null, "No History");
+			}
+			else{
 			showMessageDialog(null, "Invalid input - please enter valid expression");
+			}
 			History.deleteHistory();
+			//TODO 
+			// still adds wrong inputs if they are not in a form like [0,0,]
 		}
+		
+		
 
 	}
 
@@ -66,7 +76,7 @@ public class Evaluator implements Command<Pixmap> {
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
 
-
+		
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		if (History.getTimeTravellingStatus()){
 			return expTreeGen.makeExpression(History.retrieveHistory());
@@ -74,7 +84,7 @@ public class Evaluator implements Command<Pixmap> {
 		else{
 		History.AddHistory(Input.getInput());
 		//History.getHistory().removeAll(Arrays.asList("", null)); // clears wrong inputs - empty strings
-
+		System.out.println("added to history");
 		return expTreeGen.makeExpression(Input.getInput());
 		}
 		// return new Multiply( new X(), new Y() );
