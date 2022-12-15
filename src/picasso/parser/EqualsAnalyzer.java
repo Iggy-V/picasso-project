@@ -21,7 +21,7 @@ public class EqualsAnalyzer implements SemanticAnalyzerInterface {
 		
 		try {
 		tokens.pop();
-			
+			 
 		ExpressionTreeNode param = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		IdentifierToken t = (IdentifierToken) tokens.pop();
 		String id = t.getName();
