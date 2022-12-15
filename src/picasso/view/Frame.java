@@ -12,6 +12,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
@@ -98,9 +100,10 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		commands.add(entry);
 		commands.add(evaluate);
 		
-
-		//commands.add("Submit", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
-		evaluate.addActionListener(new ActionListener() {
+		
+		Action action = new AbstractAction()
+		{
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Input.setInput(entry.getText());
 				System.out.println(Input.getInput());
@@ -111,7 +114,10 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 				// TODO:
 				// Input.setInput("y+x"); why is this the one getting evluated
 			}
-		});
+		};
+		//commands.add("Submit", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
+		evaluate.addActionListener(action);
+		entry.addActionListener(action);
 		//Input.setInput("");
 		// add our container to Frame and show it
 		addKeyListener(this);
