@@ -18,6 +18,7 @@ import picasso.view.Input;
  * 
  * @author Robert C Duvall
  * @author Sara Sprenkle
+ * @author Ignas Volcokas
  */
 public class Evaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
@@ -50,9 +51,28 @@ public class Evaluator implements Command<Pixmap> {
 			else{
 			showMessageDialog(null, "Invalid input - please enter valid expression");
 			}
+			if (History.getPresent().contains("=")){
+				History.removeLastExpHistory();
+			}
 			History.deleteHistory();
-			//TODO 
-			// still adds wrong inputs if they are not in a form like [0,0,]
+
+
+			if (Input.getInput().contains("\"")){
+				ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
+
+				ExpressionTreeNode expr = expTreeGen.makeExpression("-1");;
+				Dimension size = target.getSize();
+				for (int imageY = 0; imageY < size.height; imageY++) {
+					double evalY = imageToDomainScale(imageY, size.height);
+					for (int imageX = 0; imageX < size.width; imageX++) {
+						double evalX = imageToDomainScale(imageX, size.width);
+						Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
+						target.setColor(imageX, imageY, pixelColor);
+						
+					}
+				}
+			}
+
 		}
 		
 		

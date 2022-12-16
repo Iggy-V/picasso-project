@@ -124,6 +124,8 @@ public class RandExp extends ExpressionTreeNode {
 	
 	ExpressionTreeGenerator exp = new ExpressionTreeGenerator();
 	e = exp.makeExpression(expression);
+	History.deleteHistory();
+	History.AddHistory(expression);
 	
 	History.deleteHistory();
 	History.AddHistory(expression);
