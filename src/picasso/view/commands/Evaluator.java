@@ -50,7 +50,12 @@ public class Evaluator implements Command<Pixmap> {
 			else{
 			showMessageDialog(null, "Invalid input - please enter valid expression");
 			}
+			if (History.getPresent().contains("=")){
+				History.removeLastExpHistory();
+			}
 			History.deleteHistory();
+
+
 			if (Input.getInput().contains("\"")){
 				ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 
@@ -66,6 +71,7 @@ public class Evaluator implements Command<Pixmap> {
 					}
 				}
 			}
+
 		}
 		
 		
