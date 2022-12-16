@@ -27,8 +27,8 @@ This code base originated as a project in a course at Duke University.  The prof
 #### `Random Expression Extension` 
 In the GUI, type randExp(int) to create a random expression that is -int- "items" long. These items are made up of our unary functions, basic operators, "x", "y", and "random()". To avoid syntax errors, an "x" or "y" may be added to the expression making it <int>+1 in length.
 
-#### `Defined Variable GUI Extension`
-Extension that displays the expressions that are currently assigned to variables on the bottom of the GUI. Next to it is the current expression for reference.
+####`Defined Variable GUI Extension`
+Extension that displays the expressions that are currently assigned to variables on the right side of the GUI. On the bottom is the current expression for reference.
 
 #### `History Toggle Extension`
 This extension allows users to go in between previously entered expressions. First the user needs to click on the image with a mouse. And then use the left and right arrows to go back and forth between previously entered expressions. The history works as loop so if you press right arrow when on the newly entered expression, you will get the first expression ever entered. It also displays the expression entered at the bottom of the screen. This is particularly cool when looking at randExp as going through the history will show the actual expressions. Also there are no wrong or empty inputs entered in history.
