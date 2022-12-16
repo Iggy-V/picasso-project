@@ -51,8 +51,23 @@ public class Evaluator implements Command<Pixmap> {
 			showMessageDialog(null, "Invalid input - please enter valid expression");
 			}
 			History.deleteHistory();
-			//TODO 
-			// still adds wrong inputs if they are not in a form like [0,0,]
+			if (Input.getInput().contains("\"")){
+				// create the expression to evaluate just once
+				ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
+
+				ExpressionTreeNode expr = expTreeGen.makeExpression("-1");;
+			// evaluate it for each pixel
+				Dimension size = target.getSize();
+				for (int imageY = 0; imageY < size.height; imageY++) {
+					double evalY = imageToDomainScale(imageY, size.height);
+					for (int imageX = 0; imageX < size.width; imageX++) {
+						double evalX = imageToDomainScale(imageX, size.width);
+						Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
+						target.setColor(imageX, imageY, pixelColor);
+						
+					}
+			}
+		}
 		}
 		
 		
