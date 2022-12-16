@@ -6,6 +6,7 @@ import java.util.Random;
 
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.view.History;
 
 /**
  * Represents the Random Expression function in the Picasso language.
@@ -23,7 +24,6 @@ public class RandExp extends ExpressionTreeNode {
 	 * @param param the expression
 	 */
 	
-	
 	public int length;
 	public String expression;
 	ExpressionTreeNode e;
@@ -31,9 +31,10 @@ public class RandExp extends ExpressionTreeNode {
 	public RandExp(int length) {
 		this.length = length;
 		
-		List<String> functions = Arrays.asList("RGBToYCrCb(", "yCrCbToRGB(","floor(","ceil(","sin(","abs(","cos(","tan(","atan(","log(");
+		List<String> functions = Arrays.asList("RGBToYCrCb(", "yCrCbToRGB(","ceil(", "floor(","sin(","abs(","cos(","tan(","atan(","log(");
 		List<String> others = Arrays.asList("x","y","random()");
-		List<String> operators = Arrays.asList("+","-","*","/");
+		List<String> operators = Arrays.asList("+","-","*","/","%");
+
 		
 		Random rand = new Random();
 		
@@ -101,15 +102,15 @@ public class RandExp extends ExpressionTreeNode {
 					i++;	
 						}
 					}
-				}	
-			}
+			}	
+		}
 		if (expression.endsWith(")")) {
 			int randAction = rand.nextInt(operators.size());
 			String item = (String) operators.get(randAction);
 			expression += item;
 		}
 		if (expression.endsWith("(") == true || expression.endsWith("+") == true || expression.endsWith("-") == true
-				|| expression.endsWith("*") == true || expression.endsWith("/") == true) {
+				|| expression.endsWith("*") == true || expression.endsWith("/") == true || expression.endsWith("%") == true ) {
 			int randAction = rand.nextInt(others.size());
 			String item = (String) others.get(randAction);
 			expression += item;
@@ -123,6 +124,11 @@ public class RandExp extends ExpressionTreeNode {
 	
 	ExpressionTreeGenerator exp = new ExpressionTreeGenerator();
 	e = exp.makeExpression(expression);
+	
+	History.deleteHistory();
+	History.AddHistory(expression);
+
+
 	
 	}
 	

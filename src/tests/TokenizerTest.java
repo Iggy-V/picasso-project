@@ -82,8 +82,11 @@ public class TokenizerTest {
 
 	@Test
 	public void testTokenizeBasicFunctionExpression() {
-		String[] expressions = {"floor(x)", "ceil(x)", "sin(x)", "cos(x)", "abs(x)"};
-		Token[] tokenList = {new FloorToken(), new CeilToken(), new SinToken(), new CosToken(), new AbsToken()};
+		String[] expressions = {"floor(x)", "ceil(x)", "sin(x)", "cos(x)", "abs(x)", 
+				"RGBToYCrCb(x)", "yCrCbToRGB(x)", "perlinColor(x)", "perlinBW(x)"};
+		
+		Token[] tokenList = {new FloorToken(), new CeilToken(), new SinToken(), 
+				new CosToken(), new AbsToken(), new RGBToYCrCbToken(), new YCrCbToRGBToken(), new PerlinColorToken(), new PerlinBWToken()};
 
 		for(int i=0;i<=expressions.length-1;i++){
 		
@@ -144,6 +147,25 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new PlusToken(), tokens.get(3));
 		assertEquals(new IdentifierToken("y"), tokens.get(4));
+	}
+	
+	@Test
+	public void testTokenizeRandomExpression() {
+		String expression = "random()";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new RandomToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new RightParenToken(), tokens.get(2));
+	}
+	
+	@Test
+	public void testTokenizeRandExpExpression() {
+		String expression = "randExp(5)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new RandExpToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new NumberToken(5), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
 	}
 
 }

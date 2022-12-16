@@ -14,9 +14,11 @@ import picasso.parser.language.ExpressionTreeNode;
 public class RandomColor extends ExpressionTreeNode {
 
 	Random rand = new Random();
-	private double red = rand.nextDouble()*(-1);
-	private double green = rand.nextDouble()*(-1);
-	private double blue = rand.nextDouble()*(-1);
+	double min = -1.0;
+	double max = 1.0;
+	private double red = Math.random()*(max-min)+min;
+	private double green = Math.random()*(max-min)+min;
+	private double blue = Math.random()*(max-min)+min;
 	
 	
 	/**
@@ -26,7 +28,7 @@ public class RandomColor extends ExpressionTreeNode {
 	 */
 		@Override
 		public RGBColor evaluate(double x, double y) {
-
+			//System.out.println("[ " +red+", " + green +", " + blue + " ]");
 			return new RGBColor(red, green, blue);
 		}
 	}

@@ -6,7 +6,7 @@ import picasso.parser.language.ExpressionTreeNode;
  * Represents the floor function in the Picasso language.
  * 
  * @author Robert C. Duvall
- * @author Sara Sprenkle
+ * @author Sara Sprenkle..
  * 
  */
 public class Floor extends UnaryFunction {
