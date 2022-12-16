@@ -24,10 +24,7 @@ public class Input {
      */
     public static void setInput(String x) throws IllegalArgumentException{
        
-        input = x;
-        
-        //History.AddHistory(Input.getInput());
-        
+        input = x;        
        
     }
 }
