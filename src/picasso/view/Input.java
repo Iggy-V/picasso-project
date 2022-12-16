@@ -24,7 +24,11 @@ public class Input {
      */
     public static void setInput(String x) throws IllegalArgumentException{
        
-        input = x;        
+        input = x;
+        if( input.contains("//")){
+            String[] stringparts = input.split("//");
+            input = stringparts[0];
+        }        
        
     }
 }
