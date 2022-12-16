@@ -6,6 +6,7 @@ import java.util.Random;
 
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.view.History;
 
 /**
  * Represents the Random Expression function in the Picasso language.
@@ -123,6 +124,11 @@ public class RandExp extends ExpressionTreeNode {
 	
 	ExpressionTreeGenerator exp = new ExpressionTreeGenerator();
 	e = exp.makeExpression(expression);
+	
+	History.deleteHistory();
+	History.AddHistory(expression);
+
+
 	
 	}
 	
