@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -27,6 +26,7 @@ import picasso.view.commands.*;
  * Main container for the Picasso application
  *
  * @author Robert Duvall (rcd@cs.duke.edu)
+ * @author Ignas Volcokas
  * 
  */
 
@@ -44,12 +44,15 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		System.out.println("key pressed");
 	}
 
+	/**
+	 * Handles key inputs of left/right arrow and enter
+	 */
 	public void keyReleased(KeyEvent e){
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-			System.out.println("right");
 			History.timeTravel();
 			History.backToTheFuture();
 			jLabel2.setText("Current Expression: " + History.getPresent());
+
 			Evaluator ev = new Evaluator();
 			ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
 
@@ -57,14 +60,13 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 			canvas.refresh();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT){
-			System.out.println("left, index:" + History.getIndex() + " " + History.getHistory());
 			History.timeTravel();
 			History.timeMachine();
 			jLabel2.setText("Current Expression: " + History.getPresent());
+
 			Evaluator ev = new Evaluator();
 			ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
-			
-
+		
 			action.execute(canvas.getPixmap());
 			canvas.refresh();
 
@@ -100,9 +102,9 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
 			commands.add("Open", new Reader());
-			//commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 			commands.add("Save", new Writer());
 			commands.add("Read File", new FileReader(canvas));
+			
 			commands.add(jLabel1);
 			commands.add(entry);
 			commands.add(evaluate);
@@ -123,24 +125,14 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 				action.execute(canvas.getPixmap());
 				jLabel2.setText("Current Expression: " + Input.getInput());
 				canvas.refresh();
-				// TODO:
-				// Input.setInput("y+x"); why is this the one getting evluated
+				
 			}
 		};
-		Action update = new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e){
-				System.out.println("updating label");
-				//jLabel2.setText("Current Expression: " + Input.getInput());
-				canvas.refresh();
-			}
-		};
-		//commands.add("Submit", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
+		
+		
 		evaluate.addActionListener(action);
 		entry.addActionListener(action);
-		entry.addActionListener(update);
-		//Input.setInput("");
-		// add our container to Frame and show it
+		
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
@@ -151,22 +143,15 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 	}
 
 	public void focusGained(FocusEvent e) {
-        //displayMessage("Focus gained", e);
-    }
+    	;
+	}
 
     public void focusLost(FocusEvent e) {
-        //displayMessage("Focus lost", e);
-    }
+    	;
+	}
 
     void displayMessage(String prefix, FocusEvent e) {
-        // System.out.println(prefix
-        //             + (e.isTemporary() ? " (temporary):" : ":")
-        //             +  e.getComponent().getClass().getName()
-        //             + "; Opposite component: " 
-        //             + (e.getOppositeComponent() != null ?
-        //                 e.getOppositeComponent().getClass().getName() : "null")
-        //             + "\n"); 
-		
+		;
     }
 	public void mousePressed(MouseEvent e) {
         ;
@@ -182,7 +167,10 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 	public void mouseExited(MouseEvent e) {
     	;
     }
-     
+    
+	/**
+	 * focuses on the item clicked. 
+	 */
     public void mouseClicked(MouseEvent e) {
 		;
 		requestFocus();
