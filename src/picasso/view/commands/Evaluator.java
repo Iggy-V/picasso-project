@@ -52,11 +52,9 @@ public class Evaluator implements Command<Pixmap> {
 			}
 			History.deleteHistory();
 			if (Input.getInput().contains("\"")){
-				// create the expression to evaluate just once
 				ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 
 				ExpressionTreeNode expr = expTreeGen.makeExpression("-1");;
-			// evaluate it for each pixel
 				Dimension size = target.getSize();
 				for (int imageY = 0; imageY < size.height; imageY++) {
 					double evalY = imageToDomainScale(imageY, size.height);
@@ -66,8 +64,8 @@ public class Evaluator implements Command<Pixmap> {
 						target.setColor(imageX, imageY, pixelColor);
 						
 					}
+				}
 			}
-		}
 		}
 		
 		
