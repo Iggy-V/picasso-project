@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.*;
-import picasso.parser.language.expressions.Addition;
+import picasso.parser.language.expressions.Module;
 
 /**
  * Tests of creating an expression tree from a string expression. Will have
@@ -55,7 +55,6 @@ public class ParseExpressionTreeTests {
 		ExpressionTreeNode e = parser.makeExpression("x + y");
 		assertEquals(new Addition(new X(), new Y()), e);
 		
-		// no spaces!
 		ExpressionTreeNode e1 = parser.makeExpression("x+y");
 		assertEquals(new Addition(new X(), new Y()), e1);
 
@@ -149,5 +148,102 @@ public class ParseExpressionTreeTests {
 		ExpressionTreeNode e = parser.makeExpression("yCrCbToRGB( x )");
 		assertEquals(new YCrCbToRGB(new X()), e);
 	}
-
+	@Test
+	public void exponentialExpressionTest() {
+		ExpressionTreeNode e = parser.makeExpression("x^y");
+		assertEquals(new Exponentiate(new X(), new Y()), e);
+		
+		e = parser.makeExpression("[1,.3,-1] ^ y");
+		assertEquals(new Exponentiate(new RGBColor(1, .3, -1),new Y()), e);
+	}
+	@Test
+	public void divisionExpressionTest() {
+		ExpressionTreeNode e = parser.makeExpression("x/y");
+		assertEquals(new Division(new X(), new Y()), e);
+		
+		ExpressionTreeNode e1 = parser.makeExpression("y/x");
+		assertEquals(new Division(new Y(), new X()), e1);
+		
+		e1 = parser.makeExpression("[1,.3,-1] / y");
+		assertEquals(new Division(new RGBColor(1, .3, -1),new Y()), e1);
+		
+		e1 = parser.makeExpression("x / y / [ -.51, 0, 1]");
+		assertEquals(new Division(new Division(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
+	}
+	public void moduleExpressionTest() {
+		ExpressionTreeNode e = parser.makeExpression("x%y");
+		assertEquals(new Module(new X(), new Y()), e);
+		
+		ExpressionTreeNode e1 = parser.makeExpression("y%x");
+		assertEquals(new Module(new Y(), new X()), e1);
+		
+		e1 = parser.makeExpression("[1,.3,-1] % y");
+		assertEquals(new Module(new RGBColor(1, .3, -1),new Y()), e1);
+		
+		e1 = parser.makeExpression("x % y % [ -.51, 0, 1]");
+		assertEquals(new Module(new Division(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
+	}
+	@Test
+	public void tangentFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("tan(x)");
+		assertEquals(new Tangent(new X()), e);
+		
+		e = parser.makeExpression("tan(x+y)");
+		assertEquals(new Tangent(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void arctanFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("arctan(x)");
+		assertEquals(new ArcTan(new X()), e);
+		
+		e = parser.makeExpression("arctan(y)");
+		assertEquals(new ArcTan(new Y()), e);
+		
+		e = parser.makeExpression("arctan(x+y)");
+		assertEquals(new ArcTan(new Addition(new X(), new Y())), e);
+	}	
+	@Test
+	public void expFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("exp(x)");
+		assertEquals(new Exp(new X()), e);
+		
+		e = parser.makeExpression("exp(y)");
+		assertEquals(new Exp(new Y()), e);
+		
+		e = parser.makeExpression("exp(x+y)");
+		assertEquals(new Exp(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void logFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("log(x)");
+		assertEquals(new Logorithm(new X()), e);
+		
+		e = parser.makeExpression("log(y)");
+		assertEquals(new Logorithm(new Y()), e);
+		
+		e = parser.makeExpression("log(x+y)");
+		assertEquals(new Logorithm(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void rgbToYCrCbFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("rgbToYCrCb(x)");
+		assertEquals(new RGBToYCrCb(new X()), e);
+		
+		e = parser.makeExpression("rgbToYCrCb(y)");
+		assertEquals(new RGBToYCrCb(new Y()), e);
+		
+		e = parser.makeExpression("rgbToYCrCb(x+y)");
+		assertEquals(new RGBToYCrCb(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void yCrCbToRGBFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("yCrCbToRGB(x)");
+		assertEquals(new YCrCbToRGB (new X()), e);
+		
+		e = parser.makeExpression("yCrCbToRGB(y)");
+		assertEquals(new YCrCbToRGB(new Y()), e);
+		
+		e = parser.makeExpression("yCrCbToRGB(x+y)");
+		assertEquals(new YCrCbToRGB(new Addition(new X(), new Y())), e);
+	}
 }
