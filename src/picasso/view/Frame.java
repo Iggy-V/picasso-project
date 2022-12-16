@@ -39,6 +39,7 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
     public static String textFieldValue;
 	public Canvas canvas;
 	public JLabel jLabel2 = new JLabel();
+	public JLabel jLabel3 = new JLabel();
 
 	public void keyPressed(KeyEvent e){
 		System.out.println("key pressed");
@@ -98,6 +99,8 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		jLabel1.setText("Enter the expression:");
 		
 		jLabel2.setText("");
+		jLabel3.setText("Saved Expressions: ");
+		
 		
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
@@ -111,6 +114,10 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		
 		ButtonPanel commandsBottom = new ButtonPanel(canvas);
 			commandsBottom.add(jLabel2);
+			commandsBottom.add(jLabel3);
+		//ButtonPanel commandsSide = new ButtonPanel(canvas);
+		//	commandsSide.add(jLabel2);
+			
 			
 			
 		
@@ -123,22 +130,23 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 				Evaluator ev = new Evaluator();
 				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
 				action.execute(canvas.getPixmap());
-				jLabel2.setText("Current Expression: " + Input.getInput());
+				jLabel2.setText("Current Expression: " + Input.getInput() + "  | ");
+				jLabel3.setText("<html>" + "Saved expressions: " + History.getSavedExpHistory()+ "</html>");
 				canvas.refresh();
 				
 			}
 		};
-		
-		
+
 		evaluate.addActionListener(action);
 		entry.addActionListener(action);
-		
+
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
 		getContentPane().add(commandsBottom, BorderLayout.SOUTH);
+		//getContentPane().add(commandsSide, BorderLayout.WEST);
 		pack();
 	}
 
