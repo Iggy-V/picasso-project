@@ -26,3 +26,7 @@ This code base originated as a project in a course at Duke University.  The prof
 
 ####`Random Expression Extension` 
 In the GUI, type randExp(int) to create a random expression that is -int- "items" long. These items are made up of our unary functions, basic operators, "x", "y", and "random()". To avoid syntax errors, an "x" or "y" may be added to the expression making it <int>+1 in length.
+
+####`Defined Variable GUI Extension`
+Extension that displays the expressions that are currently assigned to variables on the bottom of the GUI. Next to it is the current expression for reference.
+
