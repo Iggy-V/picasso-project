@@ -98,7 +98,7 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		evaluate = new JButton("Submit");
 		jLabel1.setText("Enter the expression:");
 		jLabel2.setText("");
-		jLabel3.setText("Saved Expressions: ");
+		jLabel3.setText("Saved Expressions");
 		
 		
 		// add commands to test here
@@ -114,12 +114,12 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		ButtonPanel commandsBottom = new ButtonPanel(canvas);
 			commandsBottom.add(jLabel2);
 
-			//commandsBottom.add(jLabel3);
+		//commandsBottom.add(jLabel3);
 		//ButtonPanel commandsSide = new ButtonPanel(canvas);
 		//	commandsSide.add(jLabel2);
 			
 		ButtonPanel commandsSide = new ButtonPanel(canvas);
-			commandsBottom.add(jLabel3);
+			commandsSide.add(jLabel3);
 
 			
 		
@@ -133,7 +133,15 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
 				action.execute(canvas.getPixmap());
 				jLabel2.setText("Current Expression: " + Input.getInput());
-				jLabel3.setText("<html>" + "Saved expressions: " + History.getSavedExpHistory()+ "</html>");
+				
+				StringBuilder assignment = new StringBuilder();
+				assignment.append("<html><body>Saved Expressions");
+				for (String i: History.getSavedExpHistory()){
+					assignment.append("<br>");
+					assignment.append(i);
+				}
+				assignment.append("</body></html>");
+				jLabel3.setText(assignment.toString());
 				canvas.refresh();
 				
 			}
@@ -145,7 +153,7 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
-		
+
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
 		getContentPane().add(commandsBottom, BorderLayout.SOUTH);

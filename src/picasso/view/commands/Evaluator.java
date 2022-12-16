@@ -50,7 +50,11 @@ public class Evaluator implements Command<Pixmap> {
 			else{
 			showMessageDialog(null, "Invalid input - please enter valid expression");
 			}
+			if (History.getPresent().contains("=")){
+				History.removeLastExpHistory();
+			}
 			History.deleteHistory();
+			
 			//TODO 
 			// still adds wrong inputs if they are not in a form like [0,0,]
 		}

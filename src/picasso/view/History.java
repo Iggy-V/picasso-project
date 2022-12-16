@@ -37,6 +37,11 @@ public class History {
     	return savedExp;
     }
 
+    public static void removeLastExpHistory(){
+        int x = savedExp.size()-1;
+        savedExp.remove(x);
+    }
+
     /**
      * Returns the list of expressions entered before.
      * @return
