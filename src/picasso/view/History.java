@@ -13,6 +13,7 @@ import java.util.*;
 public class History {
     
     private static List<String> listt = new ArrayList<String>();
+    private static List<String> savedExp = new ArrayList<String>();
     private static int index = -1;
     private static boolean timeTraveler = false;
 
@@ -27,8 +28,15 @@ public class History {
             listt.add(x);
             index = listt.size()-1;
         }
+        if (x.contains("=")) {
+        	savedExp.add(x);
+        }
         
     }
+    public static List<String> getSavedExpHistory() {
+    	return savedExp;
+    }
+
     /**
      * Returns the list of expressions entered before.
      * @return
