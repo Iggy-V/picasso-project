@@ -123,7 +123,7 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 
 			
 		
-		Action action = new AbstractAction()
+		Action actionOne = new AbstractAction()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -131,9 +131,11 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 				System.out.println(Input.getInput());
 				Evaluator ev = new Evaluator();
 				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, ev);
-				action.execute(canvas.getPixmap());
-				jLabel2.setText("Current Expression: " + Input.getInput());
 				
+				action.execute(canvas.getPixmap());
+				//System.out.println(History.getPresent());
+				jLabel2.setText("Current Expression: " + History.getPresent());
+
 				StringBuilder assignment = new StringBuilder();
 				assignment.append("<html><body>Saved Expressions");
 				for (String i: History.getSavedExpHistory()){
@@ -147,8 +149,8 @@ public class Frame extends JFrame implements KeyListener, FocusListener, MouseLi
 			}
 		};
 
-		evaluate.addActionListener(action);
-		entry.addActionListener(action);
+		evaluate.addActionListener(actionOne);
+		entry.addActionListener(actionOne);
 
 		addKeyListener(this);
 		setFocusable(true);

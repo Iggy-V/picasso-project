@@ -96,6 +96,7 @@ public class Evaluator implements Command<Pixmap> {
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
 
+
 		
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		if (History.getTimeTravellingStatus()){
@@ -105,6 +106,7 @@ public class Evaluator implements Command<Pixmap> {
 		History.AddHistory(Input.getInput());
 		//History.getHistory().removeAll(Arrays.asList("", null)); // clears wrong inputs - empty strings
 		System.out.println("added to history");
+		System.out.println(History.getPresent() + " this is present");
 		return expTreeGen.makeExpression(Input.getInput());
 		}
 		// return new Multiply( new X(), new Y() );
